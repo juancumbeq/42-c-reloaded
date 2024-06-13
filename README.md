@@ -89,10 +89,10 @@ file3
 ```
  
   ### Notes
-  - find .: Starts the search from the current directory (.). Replace . with any other directory path if you want to search from a specific directory.
-  - type f: Specifies that you are interested only in regular files (not directories or other types of files).
-  - name '*.sh': Searches for files whose names end with .sh.
-  - exec basename {} .sh \;: Executes the basename command on each found file ({}). basename is used to strip directory and suffix from filenames. The . before sh specifies the suffix to be removed (.sh). The \; at the end terminates the -exec command.
+  - ``find .``: Starts the search from the current directory ``(.)``. Replace ``.`` with any other directory path if you want to search from a specific directory.
+  - ``type f``: Specifies that you are interested only in regular files (not directories or other types of files).
+  - ``name '*.sh'``: Searches for files whose names end with ``.sh``.
+  - ``exec basename {} .sh \;``: Executes the ``basenam``e command on each found file ``({})``. ``basename`` is used to strip directory and suffix from filenames. The ``.`` before ``sh`` specifies the suffix to be removed ``(.sh)``. The ``\;`` at the end terminates the ``-exec`` command.
 
   - basename {} .sh removes the directory path and .sh extension from each file name.
 ';' terminates the -exec command properly.
