@@ -47,7 +47,7 @@
     ?>
     ```
   
-  ### Notes
+uii  ### Notes
   - There are various ways to create this file, the first one is using ``cat > z``. This creates write stream, to finish pres ``CTRL + D``
   - The second way is using ``echo "a" > z``. This command does not open a write stream, just saves the ``echo``content into the z file.
 
@@ -78,8 +78,8 @@
 
   ## EXERCISE 04: 
   ### Description
-  - write a command line that searches for all file namess end with '.sh' (without the quotation marks) in the currect directory and all its sub-directories. It should display only the file names without the .sh.
-  - 
+  - Write a command line that searches for all file namess end with '.sh' (without the quotation marks) in the currect directory and all its sub-directories. It should display only the file names without the .sh.
+
 ```
 ./find_sh.sh | cat -e
 find_sh
@@ -87,10 +87,19 @@ file1
 file2
 file3
 ```
-  
+ 
   ### Notes
-  - 
+  - find .: Starts the search from the current directory (.). Replace . with any other directory path if you want to search from a specific directory.
+  - type f: Specifies that you are interested only in regular files (not directories or other types of files).
+  - name '*.sh': Searches for files whose names end with .sh.
+  - exec basename {} .sh \;: Executes the basename command on each found file ({}). basename is used to strip directory and suffix from filenames. The . before sh specifies the suffix to be removed (.sh). The \; at the end terminates the -exec command.
 
+  - basename {} .sh removes the directory path and .sh extension from each file name.
+';' terminates the -exec command properly.
+
+   - Make sure to use ';' at the end of the -exec command to properly terminate it. The semicolon (;) needs to be escaped with a backslash (\) or quoted (';') to prevent the shell from interpreting it.
+
+  - If you have a large number of files matching the criteria, you might see each file name printed on a new line.1
 
 
 
