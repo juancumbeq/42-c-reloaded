@@ -1,5 +1,6 @@
 
   ## EXERCISE 00: OH YEAH, MOOORE...
+  ### Description
   - Create the following files and directories. Do what's necessary so that when you use the ``ls -l``command in your directory, the output will look like this:
   ```
   %> ls -l
@@ -17,7 +18,7 @@
   - Once you’ve done that, run tar -cf exo.tar * to create the file to be submitted.
 
 
-  Notes:
+  ### Notes
   - The first letter of every line indicates if it is a file, a directory or a link. As we can see the in the first line apperas a ``d`` at the very beginning indicating it is a directory.
 
   - To change the files and directories permissions the command ``chmod u=rw,g=r,o=r <file_name>`` can be used. As we know, the permissions are divided into three groups: user, group and others. 
@@ -33,3 +34,61 @@
   - The second column indicates the number of hard links to that file. In this example the hard links can be created using: ``ln test3 test3_hardlink``
 
   - The previous step adds metadata to the original file, this is indicated by the ``@``character after the permissions. To remove that metadata we must know them so to list them use the command: ``xattr test3``. After that, apply the command: ``xattr -d <attribute-name> test3``. If the erro: ``[Errno 13] Permission denied: 'test3'``is thrown, use the ``sudo`` before the command, it is due to permissions change.
+
+<br>
+<br>
+
+  ## EXERCISE 01: Z
+  ### Description
+  - Create a file called z that returns "Z", followed by a new line, whenever the command ``cat`` is used on it:
+    ```
+    ?>cat z
+    Z
+    ?>
+    ```
+  
+  ### Notes
+  - There are various ways to create this file, the first one is using ``cat > z``. This creates write stream, to finish pres ``CTRL + D``
+  - The second way is using ``echo "a" > z``. This command does not open a write stream, just saves the ``echo``content into the z file.
+
+<br>
+<br>
+
+  ## EXERCISE 03: 
+  ### Description
+  - In a file called ``clean`` place the command line that will search for all files - in the current directory as well as in its sub-directories - with a name ending by ``~``, or with a name that start and end by ``#`.
+  - The command line will show and erase all files found.
+  - Only one command is allowed: no ``;`` or ``&&`` or other shenanigans.
+  
+  ### Notes
+  - The resulting code is: ``find . -type f -name '*~' -print -delete -o -name '#*#' -print -delete``
+  - Let's dive deep into the code:
+    - ``find``: is the search command.
+    - ``.`: indicates that the searching must be done in the current directory and subdirectories.
+    - ``-type f``: this option is to search files only, not directories.
+    - ``-name '*~'``: ``-name``allow us to specify a name pattern. '*~' represets the name pattern, indicating files with name ending with a ``'~'``.
+    - ``-print -delete``: ``-print`` shows the found file name. ``-delete``deletes the found file. Both command are applied to the files with the indicated name pattern.
+    - ``-o``: is the logical operator OR, used to add another searching condition.
+    - ``-name '#*#'``: simila to the previour pattern, this command sets a name pattern to files with name starting and ending with a ``'*#'``. 
+
+  - In other words, the command ``find . -type f -name '*~' -print -delete -o -name '*#' -print -delete`` is searching in the current directory and subdirectories all the files whose name is ending with ``~`` or stating and ending with ``#``. For every found file, executes a ``-print``and a ``-delete``.
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
