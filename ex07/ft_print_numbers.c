@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcumbe-q <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jcumbe-q <jcumbe-q@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:10:38 by jcumbe-q          #+#    #+#             */
 /*   Updated: 2024/06/16 15:20:16 by jcumbe-q         ###   ########.fr       */

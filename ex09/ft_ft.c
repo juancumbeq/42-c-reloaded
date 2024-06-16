@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_ft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcumbe-q <jcumbe-q@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:51:39 by jcumbe-q          #+#    #+#             */
-/*   Updated: 2024/06/16 15:55:22 by jcumbe-q         ###   ########.fr       */
+/*   Created: 2024/06/16 17:46:34 by jcumbe-q          #+#    #+#             */
+/*   Updated: 2024/06/16 18:10:16 by jcumbe-q         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 /*
- * Create a function that displays ’N’ or ’P’ depending on the integer’s sign entered as a parameter. If n is negative, display ’N’. If n is positive or null, display ’P’.
+ * Create a function that takes a pointer to int as a parameter, and sets the value "42" to that int.
  */
 
+#include <stdio.h>
 #include <unistd.h>
 
-void ft_is_negative(int n)
+void ft_ft(int *nbr)
 {
-	if(n<0)
-	{
-		write(1,"N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
-	}
+	*nbr = 42;
+	printf("%d\n", *nbr);
 }
 
-int main (void)
+int main(void)
 {
-	ft_is_negative(9);
+	int value;
+	int *pointer = &value;
+
+	ft_ft(pointer);
+	return(0);
 }

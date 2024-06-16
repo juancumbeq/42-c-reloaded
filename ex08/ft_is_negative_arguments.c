@@ -19,7 +19,7 @@
 
 void ft_is_negative(int n)
 {
-	if(n<0)
+	if(n == '-') // For negative values the first char is a minus
 	{
 		write(1,"N", 1);
 	}
@@ -37,7 +37,7 @@ int main (int argc, char *argv[])
 	num_char = argv[1][0]; // Accesing the firts char of the firts argument.
 	digit = (int)num_char; // Casting to convert a char into a string
 
-	ft_is_negative(digit); // Do not work with negative values
+	ft_is_negative(digit);
 }
 
 /*

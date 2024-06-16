@@ -340,13 +340,28 @@ uii  ### Notes
   - Create a function that takes a pointer to int as a parameter, and sets the value "42" to that int.
   - Here’s how it should be prototyped:``void ft_ft(int *nbr);``
 
-
-    ```
-    ```
-  
   ### Notes
-  - 
+  ```
+  #include <stdio.h>
+  #include <unistd.h>
 
+  void ft_ft(int *nbr)
+  {
+    *nbr = 42;
+    printf("%d\n", *nbr);
+  }
+
+  int main(void)
+  {
+    int value;
+    int *pointer = &value;
+
+    ft_ft(pointer);
+    return(0);
+  }
+  ```
+
+  - 
 
 <br>
 <br>
