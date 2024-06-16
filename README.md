@@ -360,8 +360,12 @@ uii  ### Notes
     return(0);
   }
   ```
+  - int value : it is necessary to have a variable to store the number 42.
+  - int *pointer = &value : by this line we are accesing the memory address of the value variable, after that the pointer is created and initialized with the memory address obtained from value. Now the pointer variable stores a memory address.
+  - The memory address is passed as an argument to the ft_ft function.
+  - Inside the ft_ft function the memory address passed previously is assigned to the pointer *nbr.
+  
 
-  - 
 
 <br>
 <br>

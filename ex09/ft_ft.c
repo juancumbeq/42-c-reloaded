@@ -29,5 +29,7 @@ int main(void)
 	int *pointer = &value;
 
 	ft_ft(pointer);
+  printf("%d\n", value);
 	return(0);
+  
 }
