@@ -249,6 +249,7 @@ uii  ### Notes
   ### Notes
   ```
   #include <unistd.h>
+
   void ft_print_alphabet(void)
   {	
     char letter = 'a';
@@ -274,49 +275,72 @@ uii  ### Notes
   ### Description
   - Create a function that displays all digits, on a single line, by ascending order.
   - Here’s how it should be prototyped: ``void ft_print_numbers(void)``;
+
+  ### Notes
+  ```
+  #include <unistd.h>
+
+  void ft_print_numbers(void)
+  {
+    int digit;
+    digit = 48;
+
+    while(digit <= 57)
+    {
+      write(1, &digit,1);
+      digit++;
+    }
+  }
+
+  int main(void)
+  {
+    ft_print_numbers();
+    return(0);
+  }
+  ```
+  - As we did in the previous exercise the graphical representation of a letter or a digit is based on the ASCII code. That's the reason the ``digit``variable starts with the 48 number, because this value equals the ``0``.
+
+
+<br>
+<br>
+
+  ## EXERCISE 08: 
+  ### Description
+  - Create a function that displays ’N’ or ’P’ depending on the integer’s sign entered as a parameter. If n is negative, display ’N’. If n is positive or null, display ’P’.
+  - Here’s how it should be prototyped: ``void ft_is_negative(int n)``
   
   ### Notes
-   ```
-    #include <unistd.h>
-    void ft_print_numbers(void)
+  ```
+  #include <unistd.h>
+
+  void ft_is_negative(int n)
+  {
+    if(n<0)
     {
-      int digit;
-      digit = 48;
-
-      while(digit <= 57)
-      {
-        write(1, &digit,1);
-        digit++;
-      }
+      write(1,"N", 1);
     }
-
-    int main(void)
+    else
     {
-      ft_print_numbers();
-      return(0);
+      write(1, "P", 1);
     }
-    ```
+  }
+
+  int main (void)
+  {
+    ft_is_negative(9);
+  }
+  ```
 
 
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 09: 
   ### Description
-  - 
-    ```
-    ```
-  
-  ### Notes
-  - 
+  - Create a function that takes a pointer to int as a parameter, and sets the value "42" to that int.
+  - Here’s how it should be prototyped:``void ft_ft(int *nbr);``
 
 
-<br>
-<br>
-
-  ## EXERCISE 0: 
-  ### Description
-  - 
     ```
     ```
   
