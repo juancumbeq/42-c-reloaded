@@ -433,15 +433,45 @@ uii  ### Notes
   - This function divides parameters ``a`` by ``b`` and stores the result in the int pointed by div. It also stores the remainder of the division of ``a`` by ``b`` in the int pointed by ``mod``.
   
   ### Notes
-  - 
+  ```
+  #include <unistd.h>
+  #include <stdio.h>
 
+  void ft_div_mod(int a, int b, int *div, int *mod)
+  {
+    *div = a / b;
+    *mod = a % b;
+  }
+
+  int main(void)
+  {
+    int x = 10;
+    int y = 3;
+    int div;
+    int mod;
+
+    int *ptr_div = &div;
+    int *ptr_mod = &mod;
+
+    ft_div_mod(x, y, ptr_div, ptr_mod);
+
+    printf("%d\n", x);
+    printf("%d\n", y);
+    printf("%d\n", div);
+    printf("%d\n", mod);
+  }
+  ```
+  - ``ft_div_mod(x, y, &div, &mod);``: This is another alternative to pass the memory address to the fuction ``ft_div_mod``, without declaring a initilizing a pointer.
 
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 12: 
   ### Description
-  - 
+  - Create an iterated function that returns a number. This number is the result of a factorial operation based on the number given as a parameter.
+  - If there’s an error, the function should return 0.
+  - Here’s how it should be prototyped: ``int ft_iterative_factorial(int nb);``
+  - Your function must return its result in less than two seconds.
     ```
     ```
   
