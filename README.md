@@ -379,25 +379,58 @@ uii  ### Notes
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 10: 
   ### Description
-  - 
-    ```
-    ```
+  - Create a function that swaps the value of two integers whose addresses are entered as parameters.
+  - Here’s how it should be prototyped: ``void ft_swap(int *a, int *b);``
   
   ### Notes
-  - 
+  ```
+  #include <unistd.h>
+  #include <stdio.h>
+
+  void ft_swap(int *a, int *b)
+  {
+    int num;
+    num = *b;
+
+    *b = *a;
+    *a = num;
+  }
+
+  int main(void)
+  {
+    int x;
+    int y;
+
+    int *ptr_x = &x;
+    int *ptr_y = &y;
+
+    x = 10;
+    y = 5;
+    
+    printf("Before SWAP\n");
+    printf("%d\n", x);
+    printf("%d\n", y);
+
+    ft_swap(ptr_x, ptr_y);
+    
+    printf("After SWAP\n");
+    printf("%d\n", x);
+    printf("%d\n", y);
+  }
+  ```
+  - It is important to initilize the pointer after using them as arguments.
 
 
 
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 11: 
   ### Description
-  - 
-    ```
-    ```
+  - Create a function ``ft_div_mod`` prototyped like this: ``void ft_div_mod(int a, int b, int *div, int *mod);``
+  - This function divides parameters ``a`` by ``b`` and stores the result in the int pointed by div. It also stores the remainder of the division of ``a`` by ``b`` in the int pointed by ``mod``.
   
   ### Notes
   - 

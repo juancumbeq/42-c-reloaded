@@ -20,7 +20,6 @@
 void ft_ft(int *nbr)
 {
 	*nbr = 42;
-	printf("%d\n", *nbr);
 }
 
 int main(void)
