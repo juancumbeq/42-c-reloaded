@@ -502,19 +502,19 @@
   }
   ```
 
-
-
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 13: 
   ### Description
-  - 
-    ```
-    ```
+  - Create a recursive function that returns the factorial of the number given as a parameter.
+  - If there’s an error, the function should return 0.
+  - Here’s how it should be prototyped: ``int ft_recursive_factorial(int nb);``
   
   ### Notes
-  - 
+  ```
+
+  ```
 
 
 <br>

@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcumbe-q <jcumbe-q@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 13:07:14 by jcumbe-q          #+#    #+#             */
-/*   Updated: 2024/06/17 13:08:49 by jcumbe-q         ###   ########.fr       */
+/*   Created: 2024/06/17 13:40:05 by jcumbe-q          #+#    #+#             */
+/*   Updated: 2024/06/17 13:41:56 by jcumbe-q         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-int ft_iterative_factorial(int nb)
+int ft_recursive_factorial(int nb)
 {
-  int sum;
-  sum = 1;
-
-	while(nb>0)
-  {
-    sum *= nb;
-    nb--;
-  }
-  return sum;
+	
 }
 
 int main(void)
 {
-	int num = 5;
-  int sum;
-  sum = ft_iterative_factorial(num);
-  printf("%d\n", sum);
-  return 0;
+	return 0;
 }
