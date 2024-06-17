@@ -360,11 +360,87 @@ uii  ### Notes
     return(0);
   }
   ```
-  - int value : it is necessary to have a variable to store the number 42.
-  - int *pointer = &value : by this line we are accesing the memory address of the value variable, after that the pointer is created and initialized with the memory address obtained from value. Now the pointer variable stores a memory address.
-  - The memory address is passed as an argument to the ft_ft function.
-  - Inside the ft_ft function the memory address passed previously is assigned to the pointer *nbr.
+  - ``int value`` : it is necessary to have a variable to store the number 42.
+  - ``int *pointer = &value``: by this line we are accesing the memory address of the value variable, after that the pointer is created and initialized with the memory address obtained from value variable. Now the pointer variable stores a memory address.
+  - ``ft_ft(pointer)``: the memory address is passed as an argument to the ``ft_ft`` function.
+  - Inside the ``ft_ft`` function the memory address passed previously is assigned to the pointer ``nbr``. So, ``nbr ``points to ``value``.
+  - ``*nbr``: means = the value in the memory addres pointed by nbr.
+  - ``*nbr = 42``: means = assign 42 to the value in the memory address pointed by ``nbr``.
   
+  #### Key Concept
+  Dereference (``*nbr``): this concepts defines accesing and modifying the value stored in the memory address contained by the pointer ``nbr``.
+
+  It is important to difference two scenarios:
+  - ``int *nbr``: declares a pointer to a integer.
+  - ``*nbr``: access the integer in the memory address pointed by ``nbr``.
+
+  In short, when you do ``*nbr = 42``, you are not changing the memory address that ``nbr`` contains, but the value stored at that memory address. So, even though ``nbr`` is already initialized with the address of ``value``, you can use ``*nbr`` to assign a new value to value.
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
 
 
 <br>
