@@ -47,7 +47,7 @@
     ?>
     ```
   
-uii  ### Notes
+  ### Notes
   - There are various ways to create this file, the first one is using ``cat > z``. This creates write stream, to finish pres ``CTRL + D``
   - The second way is using ``echo "a" > z``. This command does not open a write stream, just saves the ``echo``content into the z file.
 
@@ -151,7 +151,7 @@ uii  ### Notes
   #### Result:
   - This command will display all MAC addresses from the network interfaces on your system, each on a new line. The MAC addresses will be in the format ``XX:XX:XX:XX:XX:XX``, where ``XX`` is a pair of hexadecimal digits.
 
-  #### Another alternative:
+  #### Another alternative:
   ```
   #!/bin/bash
   ifconfig | grep 'ether' | cut -d ' ' -f 2 
