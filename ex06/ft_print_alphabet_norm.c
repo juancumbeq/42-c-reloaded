@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
+/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcumbe-q <jcumbe-q@student.42barcel>       +#+  +:+       +#+        */
+/*   By: jcumbe-q <jcumbe-q@student.42barcelo>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 17:10:38 by jcumbe-q          #+#    #+#             */
-/*   Updated: 2024/06/18 16:49:08 by jcumbe-q         ###   ########.fr       */
+/*   Created: 2024/06/18 19:50:43 by jcumbe-q          #+#    #+#             */
+/*   Updated: 2024/06/18 19:51:23 by jcumbe-q         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_print_numbers(void)
+void	ft_print_alphabet(void)
 {
-	int	c;
+	char	a;
 
-	c = 48;
-	while (c <= 57)
+	a = 'a';
+	while (a <= 'z')
 	{
-		ft_putchar(c);
-		c++;
+		ft_putchar(a);
+		a++;
 	}
 }
 
 /*int	main(void)
 {
-	ft_print_numbers();
+	ft_print_alphabet();
 	return (0);
 }*/
