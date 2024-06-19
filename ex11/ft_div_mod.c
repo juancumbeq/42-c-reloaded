@@ -10,30 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
-void ft_div_mod(int a, int b, int *div, int *mod)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
 	*div = a / b;
-  *mod = a % b;
+	*mod = a % b;
 }
 
-int main(void)
+int	main(void)
 {
-	int x = 10;
-  int y = 3;
-  int div;
-  int mod;
+	int	x;
+	int	y;
+	int	div;
+	int	mod;
+	int	*ptr_div;
+	int	*ptr_mod;
 
-  int *ptr_div = &div;
-  int *ptr_mod = &mod;
-
-  ft_div_mod(x, y, ptr_div, ptr_mod);
-
-  printf("%d\n", x);
-  printf("%d\n", y);
-  printf("%d\n", div);
-  printf("%d\n", mod);
-
+	x = 10;
+	y = 3;
+	ptr_div = &div;
+	ptr_mod = &mod;
+	ft_div_mod(x, y, ptr_div, ptr_mod);
+	printf("%d\n", x);
+	printf("%d\n", y);
+	printf("%d\n", div);
+	printf("%d\n", mod);
 }

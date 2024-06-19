@@ -501,6 +501,15 @@
     printf("%d\n", sum);
   }
   ```
+  - Another option is to do the following: ``sum = nb;``. By this way we are initializing the sum variable to the nb variable so in the while loop we can do:
+  ```
+  while (nb > 1)
+	{
+		nb--;
+		res *= nb;
+	}
+  ```
+  - Using this method we are saving an iteration.
 
 <br>
 <br>

@@ -10,25 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * Create a function that takes a pointer to int as a parameter, and sets the value "42" to that int.
- */
-
 #include <stdio.h>
 #include <unistd.h>
 
-void ft_ft(int *nbr)
+void	ft_ft(int *nbr)
 {
 	*nbr = 42;
 }
 
-int main(void)
+int	main(void)
 {
-	int value;
-	int *pointer = &value;
+	int	value;
+	int	*pointer;
 
+	pointer = &value;
 	ft_ft(pointer);
-  printf("%d\n", value);
-	return(0);
-  
+	printf("%d\n", value);
+	return (0);
 }

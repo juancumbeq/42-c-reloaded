@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_swap_norm.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcumbe-q <jcumbe-q@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcumbe-q <jcumbe-q@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:18:23 by jcumbe-q          #+#    #+#             */
-/*   Updated: 2024/06/17 12:25:50 by jcumbe-q         ###   ########.fr       */
+/*   Created: 2024/06/19 15:23:56 by jcumbe-q          #+#    #+#             */
+/*   Updated: 2024/06/19 15:25:23 by jcumbe-q         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_swap(int *a, int *b)
 	*a = num;
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int	x;
 	int	y;
@@ -40,4 +40,4 @@ int	main(void)
 	printf("After SWAP\n");
 	printf("%d\n", x);
 	printf("%d\n", y);
-}
+}*/
