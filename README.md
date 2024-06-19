@@ -731,7 +731,91 @@
   - Here’s how it should be prototyped: ``void ft_putstr(char *str);``
   
   ### Notes
-  - 
+  - Let's break down the given code step by step, explaining each function and how they work together.
+
+Code Breakdown
+1. Function: ft_putchar
+c
+Copiar código
+void ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+Purpose: This function writes a single character c to the standard output.
+Parameters: char c - the character to be written.
+Function Call: write(1, &c, 1);
+write is a system call used to write data.
+1 is the file descriptor for standard output (stdout).
+&c is the address of the character c.
+1 specifies the number of bytes to write, which is one byte for a character.
+2. Function: ft_putstr
+c
+Copiar código
+void ft_putstr(char *str)
+{
+    while (*str != '\0')
+    {
+        ft_putchar(*str);
+        str++;
+    }
+}
+Purpose: This function writes a string str to the standard output, character by character.
+Parameters: char *str - a pointer to the string to be written.
+Loop: while (*str != '\0')
+The loop continues until the null terminator ('\0') is encountered, which marks the end of the string.
+Inside the Loop:
+ft_putchar(*str); - Calls ft_putchar to write the current character pointed to by str.
+str++; - Moves the pointer to the next character in the string.
+3. Main Function
+c
+Copiar código
+int main(void)
+{
+    char *str;
+
+    str = "Hola";
+    ft_putstr(str);
+    return (0);
+}
+Purpose: The main function is the entry point of the program.
+Variable Declaration: char *str; - Declares a pointer to a character.
+String Assignment: str = "Hola"; - Assigns the string "Hola" to the pointer str.
+Function Call: ft_putstr(str); - Calls ft_putstr to write the string "Hola" to the standard output.
+Return Statement: return (0); - Indicates that the program terminated successfully.
+Detailed Execution
+Initialization:
+
+char *str; - A pointer to a character is declared.
+str = "Hola"; - The pointer str is assigned the address of the string literal "Hola", which is stored in the read-only section of memory.
+Function Call: ft_putstr(str);
+
+ft_putstr is called with str pointing to the first character of the string "Hola".
+Inside ft_putstr:
+
+The loop starts with str pointing to 'H'.
+ft_putchar(*str); - ft_putchar('H'); is called.
+write(1, &c, 1); writes 'H' to the standard output.
+str++; - str now points to 'o'.
+ft_putchar(*str); - ft_putchar('o'); is called.
+write(1, &c, 1); writes 'o' to the standard output.
+str++; - str now points to 'l'.
+ft_putchar(*str); - ft_putchar('l'); is called.
+write(1, &c, 1); writes 'l' to the standard output.
+str++; - str now points to 'a'.
+ft_putchar(*str); - ft_putchar('a'); is called.
+write(1, &c, 1); writes 'a' to the standard output.
+str++; - str now points to the null terminator '\0'.
+End of Loop:
+
+The loop condition *str != '\0' is now false, so the loop exits.
+ft_putstr returns.
+Main Function Completion:
+
+return (0); - The main function returns 0, indicating successful execution.
+Summary
+ft_putchar writes a single character to the standard output.
+ft_putstr writes a string to the standard output by calling ft_putchar for each character in the string.
+The main function initializes a string and calls ft_putstr to print it, resulting in the output Hola.
 
 <br>
 <br>
