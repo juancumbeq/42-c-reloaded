@@ -725,6 +725,43 @@
 <br>
 <br>
 
+  ## EXERCISE 15: 
+  ### Description
+  - Create a function that displays a string of characters on the standard output.
+  - Here’s how it should be prototyped: ``void ft_putstr(char *str);``
+  
+  ### Notes
+  - 
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+    ```
+    ```
+  
+  ### Notes
+  - 
+
+
+<br>
+<br>
+
   ## EXERCISE 0: 
   ### Description
   - 
