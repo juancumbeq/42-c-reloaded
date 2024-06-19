@@ -522,22 +522,205 @@
   
   ### Notes
   ```
+  #include <unistd.h>
+  #include <stdio.h>
 
+  int ft_recursive_factorial(int nb)
+  {
+      if (nb < 0)
+          return 0;
+      if (nb == 0)
+          return 1;
+      if (nb > 1)
+          nb *= ft_recursive_factorial(nb - 1);
+      return nb;
+  }
+
+  int	main(void)
+  {
+    int num = 5;
+    int sum;
+    sum = ft_recursive_factorial(num);
+    printf("%d\n", sum);
+    return (0);
+  }
   ```
 
+  #### Explanation of the Code
+  Base Cases:
+  - If ``nb < 0``, it returns 0, indicating that the factorial of a negative number is not defined.
+  - If ``nb == 0``, it returns 1, based on the definition of 0! = 1.
 
-<br>
-<br>
-
-  ## EXERCISE 0: 
-  ### Description
-  - 
-    ```
-    ```
+  Recursive Case:
+  - If ``nb > 1``, the function calls itself with ``nb - 1`` and multiplies the current value of ``nb`` by the result of this recursive call.
   
-  ### Notes
-  - 
+  #### Iteration by Iteration Breakdown for ``nb = 5``
+  Let's follow the execution when nb is 5.
+  - Iteration 1
+    - Function Call: ``ft_recursive_factorial(5)``
+    - Condition: ``nb > 1`` is true.
+    - Action: ``5 * ft_recursive_factorial(4)``
+  - Iteration 2
+    - Function Call: ``ft_recursive_factorial(4)``
+    - ondition: ``nb > 1`` is true.
+    - Action: ``4 * ft_recursive_factorial(3)``
+  - Iteration 3
+    - Function Call: ``ft_recursive_factorial(3)``
+    - Condition: ``nb > 1`` is true.
+    - Action: ``3 * ft_recursive_factorial(2)``
+  - Iteration 4
+    - Function Call: ``ft_recursive_factorial(2)``
+    - Condition: ``nb > 1`` is true.
+    - Action: ``2 * ft_recursive_factorial(1)``
+  - Iteration 5
+    - Function Call: ``ft_recursive_factorial(1)``
+    - Condition: ``nb > 1`` is false.
+    - Return Value: Since ``nb == 1`` is true, the function returns ``1``.
 
+
+  #### Unwinding the Recursion
+  Now, the recursion starts unwinding, and the values are multiplied:
+
+  - Returning from Iteration 5: ``ft_recursive_factorial(1)`` returns 1.
+    - Calculation: ``2 * 1 = 2``
+    - Returning from Iteration 4: ``ft_recursive_factorial(2)`` returns 2.
+
+  - Returning from Iteration 4: ``ft_recursive_factorial(2)`` returns 2.
+    - Calculation: ``3 * 2 = 6``
+    - Returning from Iteration 3: ``ft_recursive_factorial(3)`` returns 6.
+
+  - Returning from Iteration 3: ``ft_recursive_factorial(3)`` returns 6.
+    - Calculation: ``4 * 6 = 24``
+    - Returning from Iteration 2: ``ft_recursive_factorial(4)`` returns 24.
+
+  - Returning from Iteration 2: ``ft_recursive_factorial(4)`` returns 24.
+    - Calculation: ``5 * 24 = 120``
+    - Returning from Iteration 1: ``ft_recursive_factorial(5)`` returns 120.
+
+  #### Summary
+  The function call ``ft_recursive_factorial(5)`` ultimately returns 120, which is the factorial of 5.
+
+  #### Full Recursion Tree
+  ```
+  ft_recursive_factorial(5)
+    -> 5 * ft_recursive_factorial(4)
+        -> 4 * ft_recursive_factorial(3)
+            -> 3 * ft_recursive_factorial(2)
+                -> 2 * ft_recursive_factorial(1)
+                    -> 1 (base case)
+  ```
+  Multiplying the results as the recursion unwinds:
+  5 * (4 * (3 * (2 * 1))) = 120
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 14: 
+  ### Description
+  - Create a function that returns the square root of a number (if it exists), or 0 if the square root is an irrational number.
+  - Here’s how it should be prototyped: ``int ft_sqrt(int nb);``
+  - Your function must return its result in less than two seconds.
+
+  ### Notes
+  ```
+  #include <stdio.h>
+  #include <unistd.h>
+
+  int	ft_sqrt(int nb)
+  {
+    int	x;
+
+    x = 0;
+    if (nb <= 0)
+      return (0);
+    if (nb == 1)
+      return (1);
+    while (x <= nb / 2)
+    {
+      if ((x * x) == nb)
+        return (x);
+      x++;
+    }
+    return (0);
+  }
+
+  int	main(void)
+  {
+    int num = 26;
+    int sqrt;
+    sqrt = ft_sqrt(num);
+    printf("%d\n", sqrt);
+    return (0);
+  }
+  ```
+  
+  #### Variable Initialization
+  ``int x = 0;``: this initializes the variable x to 0. This variable will be used to iterate and find the square root.
+
+  #### Handling Non-positive Numbers
+  ```
+  if (nb <= 0)
+    return (0);
+  ```
+  If the input number nb is less than or equal to 0, the function returns 0 because the square root of non-positive numbers is not defined in this context.
+
+  #### Special Case for 1
+  ```
+  if (nb == 1)
+      return (1);
+  ```
+  If the input number is 1, the function returns 1, since the square root of 1 is 1.
+
+  ### Iterative Search for Square Root:
+  ```
+  while (x <= nb / 2)
+  {
+      if ((x * x) == nb)
+          return (x);
+      x++;
+  }
+  return (0);
+  ```
+  - The while loop iterates through values of ``x`` from 0 to ``nb / 2``.
+  - For each value of ``x``, it checks if ``x * x`` equals nb.
+    - If true, it returns ``x`` because it found the integer square root.
+  - If no such ``x`` is found, the loop exits, and the function returns 0.
+  - If the loop completes without finding an integer whose square is ``nb``, the function returns 0.
+
+  #### Detailed Example: ``nb = 26``
+  Let's walk through the code execution for ``nb = 26``.
+
+  - Initialization:
+    - ``x`` is initialized to 0.
+    - The input ``nb`` is 26.
+
+  - First Condition Check:
+    - ``nb <= 0`` is false, so the function proceeds.
+
+  - Second Condition Check:
+    - ``nb == 1`` is false, so the function proceeds.
+  
+  - While Loop:
+    - The loop runs`` while x <= 26 / 2`` (i.e., ``x <= 13``).
+
+  - Iterations:
+    - For each iteration, the function checks if ``x * x == 26``.
+    ```
+    x = 0 -> 0 * 0 = 0
+    x = 1 -> 1 * 1 = 1
+    x = 2 -> 2 * 2 = 4
+    x = 3 -> 3 * 3 = 9
+    x = 4 -> 4 * 4 = 16
+    x = 5 -> 5 * 5 = 25
+    x = 6 -> 6 * 6 = 36
+    ```
+    - None of these values (from ``x = 0`` to ``x = 6``) satisfy the condition ``x * x == 26``.
+    - The loop exits after ``x`` exceeds 13.
+
+  - Return Statement:
+    - Since no integer ``x`` was found such that`` x * x == 26``, the function returns 0.
 
 <br>
 <br>
