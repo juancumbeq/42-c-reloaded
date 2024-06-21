@@ -789,20 +789,114 @@
   
   ### Notes
   ```
-  
+  #include <stdio.h>
+  #include <unistd.h>
+
+  int	ft_strlen(char *str)
+  {
+    int	i;
+
+    i = 0;
+    while (*str != '\0')
+    {
+      i++;
+      str++;
+    }
+    return (i);
+  }
+
+  int	main(void)
+  {
+    int len = 0;
+    char *str = "Hola";
+
+    len = ft_strlen(str);
+
+    printf("%d\n", len);
+    return (0);
+  }
   ```
 
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 17: 
   ### Description
-  - 
-    ```
-    ```
+  - Reproduce the behavior of the function strcmp (man strcmp).
+  - Here’s how it should be prototyped: ``int ft_strcmp(char *s1, char *s2);``
   
   ### Notes
-  - 
+  ```
+  #include <stdio.h>
+  #include <unistd.h>
+
+  int	ft_strcmp(char *s1, char *s2)
+  {
+    int	cmp;
+
+    while (*s1 != '\0' && *s2 != '\0')
+    {
+      cmp = *s1 - *s2;
+      if (cmp == 0)
+      {
+        s1++;
+        s2++;
+      }
+      else
+      {
+        return (*s1 - *s2);
+      }
+    }
+    return (*s1 - *s2);
+  }
+
+  int	main(void)
+  {
+    char *str1 = "Holaa";
+    char *str2 = "Hola";
+    int cmp;
+
+    cmp = ft_strcmp(str1, str2);
+
+    printf("%d\n", cmp);
+    return (0);
+  }
+  ```
+  - The ``strcmp`` function in the C language is used to compare two strings. Here is a detailed explanation of how it works:
+
+  #### Parameters:
+
+  - str1: A constant pointer to the first string to be compared.
+  - str2: A constant pointer to the second string to be compared.
+
+  #### Behavior:
+  - The function compares the characters of both strings (str1 and str2) one by one.
+  - It starts with the first characters of both strings and advances until it finds a differing character or reaches the end of one of the strings.
+
+  #### Return value:
+  - The function returns an integer value based on the comparison:
+    - Less than zero (< 0): If str1 is less than str2. This means that the first differing character has a lower ASCII value in str1 than in str2.
+    - Equal to zero (== 0): If str1 is equal to str2. This means that both strings are identical in content and length.
+    - Greater than zero (> 0): If str1 is greater than str2. This means that the first differing character has a higher ASCII value in str1 than in str2.
+
+  #### Termination:
+  - The comparison continues until a difference is found in the corresponding characters of the two strings, or until the null terminators ('\0') of both strings are reached simultaneously, indicating that both strings have the same length and content.
+
+  #### Additional Details
+    - Case Sensitivity: The strcmp function distinguishes between uppercase and lowercase letters. For example, 'A' and 'a' are considered different due to their different ASCII values.
+    - Safety: strcmp does not perform any boundary checks on the strings. It assumes that both strings are properly null-terminated ('\0').
+
+  #### One string reaches null terminator first
+  - Scenario
+    - str1 is shorter and reaches its null terminator before str2.
+    - str2 is longer and still has characters after the position where str1 ends.
+
+  - Explanation
+    - Reaching the null terminator: When strcmp encounters the null terminator in one string but not in the other, the null terminator ('\0', which is essentially a character with ASCII value 0) is compared with the corresponding character in the longer string.
+
+  - Return Value
+    - If str1 reaches the null terminator first, strcmp will return a negative value. This is because the null terminator ('\0', ASCII value 0) is less than any other character in str2 that it is compared with.
+    - Conversely, if str2 reaches the null terminator first, strcmp will return a positive value. This is because the null terminator in str2 will be less than the corresponding character in str1.
 
 
 <br>
