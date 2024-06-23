@@ -904,9 +904,119 @@
 
   ## EXERCISE 0: 
   ### Description
+  - We’re dealing with a program here, you should therefore have a function main in
+  your .c file.
+  - Create a program that displays its given arguments.
+  - Example:
+  ```
+  $>./a.out test1 test2 test3
+  test1
+  test2
+  test3
+  $>
+  ```
+  
+  ### Notes
+  ```
+  #include <stdio.h>
+  #include <unistd.h>
+
+  void	ft_putchar(char c)
+  {
+    write(1, &c, 1);
+  }
+
+  int	main(int argc, char *argv[])
+  {
+    int		i;
+    char	*str;
+
+    i = 1;
+    while (i < argc)
+    {
+      str = argv[i];
+      while (*str != '\0')
+      {
+        ft_putchar(*str);
+        str++;
+      }
+      i++;
+      ft_putchar('\n');
+    }
+    if (argc > 0)
+    {
+      printf("%d\n", argc);
+    }
+    return (0);
+  }
+  ```
+  - ``argc``: this integer makes reference to the argumentos counter, and tell us how many arguments are being given by the command line. The command ``./a.out`` counts as one argument.
+  
+  - ``argv[]``: is an array of pointers, where each pointer indicates the memory address of the first letter of every argument given.
+
+  - ``str = argv[i];``: by this line we are assigning a memory address taken from the pointers array to an empty pointer variable.
+
+  #### ``*argv[] vs **argv```
+  - Pointer to Pointer:
+    - A pointer to a pointer (e.g., ``char **p``) is a variable that holds the address of another pointer.
+
+    - If ``char *p`` is a pointer to a ``char``, then ``char **p`` is a pointer to ``char *``, meaning ``**p`` would ultimately give you a ``char``.
+
+  - Arrays and Pointers:
+    - An array name in C (e.g., ``char arr[]``) acts like a pointer to the first element of the array.
+
+    - For example, ``char arr[10]`` and ``char *arr`` can be used similarly in many contexts because the array name decays to a pointer to its first element.
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
   - 
-    ```
-    ```
   
   ### Notes
   - 
+    ```
+    ```
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 0: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
