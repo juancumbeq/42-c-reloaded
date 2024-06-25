@@ -902,7 +902,7 @@
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 18: 
   ### Description
   - We’re dealing with a program here, you should therefore have a function main in
   your .c file.
@@ -970,7 +970,237 @@
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 19: 
+  ### Description
+  - We’re dealing with a program here, you should therefore have a function main in your .c file.
+  - Create a program that displays its given arguments sorted by ascii order.
+  - It should display all arguments, except for ``argv[0]``.
+  - All arguments have to have their own line.
+  
+  ### Notes
+  ```
+  #include <unistd.h>
+
+  void ft_putchar(char c)
+  {
+    write(1, &c, 1);
+  }
+
+  void	print_str(char *str)
+  {
+    while (*str)
+    {
+      ft_putchar(*str);
+      str++;
+    }
+  }
+
+  int	ft_strcmp(char *str1, char *str2)
+  {
+    while (*str1 && *str2 && *str1 == *str2)
+    {
+      str1++;
+      str2++;
+    }
+    return (*str1 - *str2);
+  }
+
+  void	print_args(int argc, char **argv)
+  {
+    int	i;
+
+    i = 1;
+    while (i < argc)
+    {
+      print_str(argv[i]);
+      ft_putchar('\n');
+      i++;
+    }
+  }
+
+  int	main(int argc, char **argv)
+  {
+    int		i;
+    int		j;
+    char	*aux;
+
+    i = 1;
+    while (i < argc)
+    {
+      j = i + 1;
+      while (j < argc)
+      {
+        if (ft_strcmp(argv[i], argv[j]) > 0)
+        {
+          aux = argv[i];
+          argv[i] = argv[j];
+          argv[j] = aux;
+        }
+        j++;
+      }
+      i++;
+    }
+    print_args(argc, argv);
+    return (0);
+  }
+  ```
+
+  #### Step-by-Step Explanation
+  - Variable Declarations and Initializations
+    - Variable Declarations:
+      ```
+      int i;
+      int j;
+      char *aux;
+      ```
+      - ``i`` and ``j`` are loop indices.
+      - ``aux`` is a pointer to char used as a temporary variable for swapping pointers to strings.
+
+  - First Loop (``i``)
+    - Initialize ``i``:
+      ```
+      i = 1;
+      ```
+      - ``i`` is initialized to 1 to skip the first argument (``argv[0]``), which is the program name.
+
+    - Outer Loop:
+      ```
+      while (i < argc)
+      {
+          // Inner loop code
+          i++;
+      }
+      ```
+      - This loop iterates from ``i = 1`` to ``i < argc``, ensuring that it processes all command-line arguments.
+
+    - Second Loop (``j``)
+      - Initialize ``j``:
+        ```
+        j = i + 1;
+        ```
+        - For each ``i``, ``j`` is initialized to ``i + 1``, so ``j ``points to the next argument in the list. This allows comparing ``argv[i]`` with all subsequent elements in the list.
+
+      - Inner Loop: 
+        ```
+        while (j < argc)
+        {
+            // Comparison and swap code
+            j++;
+        }
+        ```
+        - This loop iterates from ``j = i + 1`` to ``j < argc``, comparing the current argument ``argv[i]`` with each subsequent argument ``argv[j]``.
+
+    - Comparison and Swapping
+      - String Comparison:
+        ```
+        if (ft_strcmp(argv[i], argv[j]) > 0)
+        {
+            aux = argv[i];
+            argv[i] = argv[j];
+            argv[j] = aux;
+        }
+        ```
+        - ``ft_strcmp(argv[i], argv[j])`` compares the strings pointed to by ``argv[i]`` and ``argv[j]``.
+        - If ``argv[i]`` is lexicographically greater than ``argv[j]`` (i.e., ``ft_strcmp`` returns a positive value), the pointers are swapped to ensure ``argv[i]`` is less than or equal to ``argv[j]``.
+
+      - Swapping Pointers:
+        ```
+        aux = argv[i];
+        argv[i] = argv[j];
+        argv[j] = aux;
+        ```
+          - ``aux`` temporarily stores the pointer ``argv[i]``.
+          - ``argv[i]`` is then assigned the value of ``argv[j]``.
+          - Finally, ``argv[j]`` is assigned the value of ``aux`` (the original ``argv[i]``).
+
+    - Printing Sorted Arguments
+      - Print Sorted Arguments:
+        ```
+        print_args(argc, argv);
+        ```
+        - After sorting the arguments, ``print_args`` is called to print each argument. This function iterates through ``argv`` from ``argv[1]`` to ``argv[argc-1]`` and prints each argument on a new line.
+
+    - Return Statement
+      - Return from main:
+        ```
+        return (0);
+        ```
+        - The main function ``returns 0``, indicating that the program terminated successfully.
+
+  #### Summary of the main Function
+  - he main function receives the command-line arguments (argc and argv).
+  - It uses a bubble sort algorithm to lexicographically sort the command-line arguments.
+  - It iterates over the arguments with two nested loops, comparing and swapping the arguments using a string comparison function (ft_strcmp).
+  - After sorting, it prints the sorted arguments using the print_args function.
+  - Finally, it returns 0 to indicate successful program execution.
+
+<br>
+<br>
+
+  ## EXERCISE 20: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 21: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+
+
+<br>
+<br>
+
+  ## EXERCISE 22: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+<br>
+<br>
+
+  ## EXERCISE 23: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+
+<br>
+<br>
+
+  ## EXERCISE 24: 
+  ### Description
+  - 
+  
+  ### Notes
+  - 
+    ```
+    ```
+<br>
+<br>
+
+  ## EXERCISE 25: 
   ### Description
   - 
   
@@ -983,7 +1213,7 @@
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 26: 
   ### Description
   - 
   
@@ -993,11 +1223,10 @@
     ```
 
 
-
 <br>
 <br>
 
-  ## EXERCISE 0: 
+  ## EXERCISE 27: 
   ### Description
   - 
   
@@ -1006,17 +1235,4 @@
     ```
     ```
 
-
-
-<br>
-<br>
-
-  ## EXERCISE 0: 
-  ### Description
-  - 
-  
-  ### Notes
-  - 
-    ```
-    ```
 
