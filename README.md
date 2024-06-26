@@ -1186,9 +1186,72 @@
     ```
     - The ``strdup`` function in C is used to duplicate a string.`` ``It allocates sufficient memory for a copy of the string, copies the string into the allocated memory, and returns a pointer to the newly allocated and duplicated string. This function is part of the POSIX standard and is widely supported, but it is not part of the ANSI C standard.
 
-    - 
+    - The ``ft_strdup`` function in detail. This function duplicates a given string, similar to the standard library function ``strdup``.
 
+  #### Function Purpose
+    - The ``ft_strdup`` function takes a string ``src`` as input and returns a new dynamically allocated string which is a duplicate of ``src``.
 
+  #### Detailed Explanation
+    - Variable Declarations:
+      ```
+      char *copy;
+      char *aux;
+      int len;
+      ```
+      - ``copy``: A pointer to hold the address of the newly allocated duplicate string.
+      - ``aux``: A pointer used to iterate through the new string while copying characters.
+      - ``len``: An integer to store the length of the source string.
+
+    - Calculate the Length of ``src``:
+      ```
+      len = 0;
+      while (src[len] != '\0') {
+          len++;
+      }
+      ```
+      - This loop calculates the length of the source string ``src`` by iterating through it until the null terminator (``'\0'``) is encountered.
+      - ``len`` will hold the number of characters in ``src``, excluding the null terminator.
+
+    - Allocate Memory for the Copy:
+      ```
+      copy = malloc(sizeof(char) * (len + 1));
+      ```
+      - ``malloc`` is used to allocate memory for the duplicate string.
+      - ``sizeof(char) * (len + 1)``: We allocate ``len + 1 bytes``. The ``+1`` is for the null terminator to properly terminate the string.
+      - ``sizeof(char)`` is always ``1``, but it's good practice to include it for clarity.
+
+    - Initialize aux to Point to copy:
+      ```
+      aux = copy;
+      ```
+      - ``aux`` is initialized to point to the start of the newly allocated memory (``copy``).
+
+    - Copy Characters from ``src`` to ``copy``:
+      ```
+      while (*src != '\0') {
+          *aux = *src;
+          aux++;
+          src++;
+      }
+      ```
+      - This loop copies each character from ``src`` to ``copy`` using the ``aux`` pointer.
+      - ``*aux = *src;`` assigns the character pointed to by ``src`` to the location pointed to by ``aux``.
+      - Both pointers are then incremented to move to the next character in their respective strings.
+
+    - Add Null Terminator to ``copy``:
+      ```
+      *aux = '\0';
+      ```
+      - After copying all characters, the null terminator is added to the end of the new string to properly terminate it.
+
+    - Return the Duplicate String:
+      ```
+      return copy;
+      ```
+      - Finally, the function returns the pointer to the newly allocated and copied string.
+
+  #### Summary
+  - This function is an example of how dynamic memory allocation and string manipulation can be done in C. It's crucial to remember to free the allocated memory once it is no longer needed to avoid memory leaks.
 
 <br>
 <br>
