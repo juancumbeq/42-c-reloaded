@@ -1258,13 +1258,15 @@
 
   ## EXERCISE 21: 
   ### Description
-  - 
-  
-  ### Notes
-  - 
-    ```
-    ```
+  - Create a function ft_range which returns an array of ints. This int array should contain all values between min and max.
+  - Min included - max excluded. 
+  - Here’s how it should be prototyped: ``int *ft_range(int min, int max);``
+  - If min value is greater or equal to max value, a null pointer should be returned.
 
+  ### Notes
+    ```
+    ```
+    - 
 
 
 <br>
