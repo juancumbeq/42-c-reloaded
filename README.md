@@ -1144,9 +1144,49 @@
 
   
   ### Notes
-  - 
     ```
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    char	*ft_strdup(char *src)
+    {
+      char	*copy;
+      char	*aux;
+      int		len;
+
+      len = 0;
+      while (src[len] != '\0')
+      {
+        len++;
+      }
+      copy = malloc(sizeof(char *) * len + 1);
+      aux = copy;
+      while (*src != '\0')
+      {
+        *aux = *src;
+        aux++;
+        src++;
+      }
+      *aux = '\0';
+      return (copy);
+    }
+
+    int	main(void)
+    {
+      char	*src;
+      char	*copy;
+
+      src = "Hello world!";
+      copy = ft_strdup(src);
+      printf("Original: %s\n", src);
+      printf("Copy: %s\n", copy);
+      free(copy);
+      return (0);
+    }
     ```
+    - The ``strdup`` function in C is used to duplicate a string.`` ``It allocates sufficient memory for a copy of the string, copies the string into the allocated memory, and returns a pointer to the newly allocated and duplicated string. This function is part of the POSIX standard and is widely supported, but it is not part of the ANSI C standard.
+
+    - 
 
 
 
