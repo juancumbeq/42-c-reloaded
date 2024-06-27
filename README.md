@@ -1144,111 +1144,111 @@
 
   
   ### Notes
-    ```
-    #include <stdio.h>
-    #include <stdlib.h>
+  ```
+  #include <stdio.h>
+  #include <stdlib.h>
 
-    char	*ft_strdup(char *src)
+  char	*ft_strdup(char *src)
+  {
+    char	*copy;
+    char	*aux;
+    int		len;
+
+    len = 0;
+    while (src[len] != '\0')
     {
-      char	*copy;
-      char	*aux;
-      int		len;
+      len++;
+    }
+    copy = malloc(sizeof(char *) * len + 1);
+    aux = copy;
+    while (*src != '\0')
+    {
+      *aux = *src;
+      aux++;
+      src++;
+    }
+    *aux = '\0';
+    return (copy);
+  }
 
-      len = 0;
-      while (src[len] != '\0')
-      {
+  int	main(void)
+  {
+    char	*src;
+    char	*copy;
+
+    src = "Hello world!";
+    copy = ft_strdup(src);
+    printf("Original: %s\n", src);
+    printf("Copy: %s\n", copy);
+    free(copy);
+    return (0);
+  }
+  ```
+  - The ``strdup`` function in C is used to duplicate a string.`` ``It allocates sufficient memory for a copy of the string, copies the string into the allocated memory, and returns a pointer to the newly allocated and duplicated string. This function is part of the POSIX standard and is widely supported, but it is not part of the ANSI C standard.
+
+  - The ``ft_strdup`` function in detail. This function duplicates a given string, similar to the standard library function ``strdup``.
+
+  #### Function Purpose
+  - The ``ft_strdup`` function takes a string ``src`` as input and returns a new dynamically allocated string which is a duplicate of ``src``.
+
+  #### Detailed Explanation
+  - Variable Declarations:
+    ```
+    char *copy;
+    char *aux;
+    int len;
+    ```
+    - ``copy``: A pointer to hold the address of the newly allocated duplicate string.
+    - ``aux``: A pointer used to iterate through the new string while copying characters.
+    - ``len``: An integer to store the length of the source string.
+
+  - Calculate the Length of ``src``:
+    ```
+    len = 0;
+    while (src[len] != '\0') {
         len++;
-      }
-      copy = malloc(sizeof(char *) * len + 1);
-      aux = copy;
-      while (*src != '\0')
-      {
+    }
+    ```
+    - This loop calculates the length of the source string ``src`` by iterating through it until the null terminator (``'\0'``) is encountered.
+    - ``len`` will hold the number of characters in ``src``, excluding the null terminator.
+
+  - Allocate Memory for the Copy:
+    ```
+    copy = malloc(sizeof(char) * (len + 1));
+    ```
+    - ``malloc`` is used to allocate memory for the duplicate string.
+    - ``sizeof(char) * (len + 1)``: We allocate ``len + 1 bytes``. The ``+1`` is for the null terminator to properly terminate the string.
+    - ``sizeof(char)`` is always ``1``, but it's good practice to include it for clarity.
+
+  - Initialize aux to Point to copy:
+    ```
+    aux = copy;
+    ```
+    - ``aux`` is initialized to point to the start of the newly allocated memory (``copy``).
+
+  - Copy Characters from ``src`` to ``copy``:
+    ```
+    while (*src != '\0') {
         *aux = *src;
         aux++;
         src++;
-      }
-      *aux = '\0';
-      return (copy);
-    }
-
-    int	main(void)
-    {
-      char	*src;
-      char	*copy;
-
-      src = "Hello world!";
-      copy = ft_strdup(src);
-      printf("Original: %s\n", src);
-      printf("Copy: %s\n", copy);
-      free(copy);
-      return (0);
     }
     ```
-    - The ``strdup`` function in C is used to duplicate a string.`` ``It allocates sufficient memory for a copy of the string, copies the string into the allocated memory, and returns a pointer to the newly allocated and duplicated string. This function is part of the POSIX standard and is widely supported, but it is not part of the ANSI C standard.
+    - This loop copies each character from ``src`` to ``copy`` using the ``aux`` pointer.
+    - ``*aux = *src;`` assigns the character pointed to by ``src`` to the location pointed to by ``aux``.
+    - Both pointers are then incremented to move to the next character in their respective strings.
 
-    - The ``ft_strdup`` function in detail. This function duplicates a given string, similar to the standard library function ``strdup``.
+  - Add Null Terminator to ``copy``:
+    ```
+    *aux = '\0';
+    ```
+    - After copying all characters, the null terminator is added to the end of the new string to properly terminate it.
 
-  #### Function Purpose
-    - The ``ft_strdup`` function takes a string ``src`` as input and returns a new dynamically allocated string which is a duplicate of ``src``.
-
-  #### Detailed Explanation
-    - Variable Declarations:
-      ```
-      char *copy;
-      char *aux;
-      int len;
-      ```
-      - ``copy``: A pointer to hold the address of the newly allocated duplicate string.
-      - ``aux``: A pointer used to iterate through the new string while copying characters.
-      - ``len``: An integer to store the length of the source string.
-
-    - Calculate the Length of ``src``:
-      ```
-      len = 0;
-      while (src[len] != '\0') {
-          len++;
-      }
-      ```
-      - This loop calculates the length of the source string ``src`` by iterating through it until the null terminator (``'\0'``) is encountered.
-      - ``len`` will hold the number of characters in ``src``, excluding the null terminator.
-
-    - Allocate Memory for the Copy:
-      ```
-      copy = malloc(sizeof(char) * (len + 1));
-      ```
-      - ``malloc`` is used to allocate memory for the duplicate string.
-      - ``sizeof(char) * (len + 1)``: We allocate ``len + 1 bytes``. The ``+1`` is for the null terminator to properly terminate the string.
-      - ``sizeof(char)`` is always ``1``, but it's good practice to include it for clarity.
-
-    - Initialize aux to Point to copy:
-      ```
-      aux = copy;
-      ```
-      - ``aux`` is initialized to point to the start of the newly allocated memory (``copy``).
-
-    - Copy Characters from ``src`` to ``copy``:
-      ```
-      while (*src != '\0') {
-          *aux = *src;
-          aux++;
-          src++;
-      }
-      ```
-      - This loop copies each character from ``src`` to ``copy`` using the ``aux`` pointer.
-      - ``*aux = *src;`` assigns the character pointed to by ``src`` to the location pointed to by ``aux``.
-      - Both pointers are then incremented to move to the next character in their respective strings.
-
-    - Add Null Terminator to ``copy``:
-      ```
-      *aux = '\0';
-      ```
-      - After copying all characters, the null terminator is added to the end of the new string to properly terminate it.
-
-    - Return the Duplicate String:
-      ```
-      return copy;
-      ```
-      - Finally, the function returns the pointer to the newly allocated and copied string.
+  - Return the Duplicate String:
+    ```
+    return copy;
+    ```
+    - Finally, the function returns the pointer to the newly allocated and copied string.
 
   #### Summary
   - This function is an example of how dynamic memory allocation and string manipulation can be done in C. It's crucial to remember to free the allocated memory once it is no longer needed to avoid memory leaks.
@@ -1264,10 +1264,117 @@
   - If min value is greater or equal to max value, a null pointer should be returned.
 
   ### Notes
-    ```
-    ```
-    - 
+  ```
+  int	*ft_range(int min, int max)
+  {
+    int	*array_int;
+    int	len;
+    int	i;
 
+    if (min >= max)
+    {
+      return (NULL);
+    }
+    i = 0;
+    len = max - min;
+    array_int = malloc(sizeof(int) * len);
+    while (min < max)
+    {
+      array_int[i] = min;
+      min++;
+      i++;
+    }
+    return (array_int);
+  }
+
+  int	main(void)
+  {
+    int	max;
+    int	min;
+    int	*res;
+    int	size;
+
+    max = 10;
+    min = 1;
+    res = ft_range(min, max);
+    size = max - min;
+    for (int i = 0; i < size; i++)
+    {
+      printf("%d, ", res[i]);
+    }
+    free(res);
+    return (0);
+  }
+  ```
+  - This function is designed to create an array of integers that range from min (inclusive) to max (exclusive).
+
+  #### Function Prototype
+  ```
+  int *ft_range(int min, int max);
+  ```
+  - This function returns a pointer to an integer array that contains all the values from min to max - 1.
+
+  #### Variable Declarations
+  ```
+  int *array_int;
+  int len;
+  int i;
+  ```
+  - ``array_int``: A pointer to the array of integers that will be dynamically allocated.
+  - ``len``: An integer to store the length of the array (i.e., the number of elements).
+  - ``i``: An integer used as an index while populating the array.
+
+  #### Edge Case Handling
+  ```
+  if (min >= max) {
+      return (NULL);
+  }
+  ```
+  - If min is greater than or equal to max, the function returns ``NULL``. This is because there are no integers in the range from min to max, making the array invalid.
+
+  #### Calculating the Length
+  ```
+  len = max - min;
+  ```
+  - The length of the array is calculated by subtracting min from max. For example, if min is 1 and max is 5, len would be 4 (i.e., 5 - 1).
+  
+  #### Memory Allocation
+  ```
+  array_int = malloc(sizeof(int) * len);
+  ```
+  - Memory is allocated for the array using ``malloc``. The size of the memory block is ``sizeof(int) * len``. This ensures enough space is allocated for ``len`` integers.
+  - ``sizeof(int)`` returns the size of an integer in bytes, which is typically 4 bytes on most systems.
+  - ``malloc`` returns a pointer to the allocated memory. If the allocation fails, it returns ``NULL``.
+
+  #### Populating the Array
+  ```
+  i = 0;
+  while (min < max) {
+      array_int[i] = min;
+      min++;
+      i++;
+  }
+  ```
+  - A ``while`` loop is used to populate the array.
+  - ``i`` is initialized to 0 and used as the index for the array.
+  - The loop runs while ``min`` is less than ``max``.
+  - In each iteration of the loop:
+    - The current value of min is assigned to ``array_int[i]``.
+    - ``min`` is incremented to move to the next integer in the range.
+    - ``i`` is incremented to move to the next position in the array.
+
+  #### Returning the Array
+  ```
+  return (array_int);
+  ```
+  - After the loop finishes, the function returns the pointer to the newly created array.
+
+  #### Summary
+  - The ``ft_range`` function creates an array of integers from ``min`` to ``max - 1``.
+  - It first checks if ``min`` is greater than or equal to ``max`` and returns ``NULL`` if true.
+  - It calculates the length of the array and allocates memory for it.
+  - It then populates the array with integers from ``min`` to ``max - 1``.
+  - Finally, it returns the pointer to the array.
 
 <br>
 <br>
@@ -1343,3 +1450,61 @@
     ```
 
 
+
+
+  # OTHER NOTES
+  ## ``malloc``vs ordinary pointers: why do we have to use the ``free()`` method after using the ``malloc`` function but not after declaring an using a pointer such as ``char *str``?
+
+  The necessity to use free() after malloc() but not after declaring and using a pointer such as char *str without malloc() stems from the difference in memory management between dynamically allocated memory and memory allocated on the stack.
+
+  ### Dynamic Memory Allocation (malloc and free)
+  When you use malloc, calloc, or realloc, you are allocating memory on the heap. The heap is a pool of memory used for dynamic allocation, which persists until explicitly deallocated.
+
+  Example:
+  ```
+  int *array = malloc(sizeof(int) * 10);
+  // Use the array
+  free(array);  // Free the allocated memory
+  ```
+
+  - malloc allocates memory on the heap, and the memory persists until you free it with free.
+  - If you don't call free, the memory remains allocated, leading to a memory leak.
+  - malloc does not automatically release memory when the pointer goes out of scope, hence you need to call free.
+
+  ### Stack Allocation
+  When you declare a pointer and assign it to a string literal or allocate memory on the stack, the memory management is handled automatically.
+
+  #### Example 1: String Literal
+  ```
+  char *str = "Hello, world!";
+  // Use the string
+  // No need to call free
+  ```
+  - str is a pointer to a string literal, which is stored in read-only memory (typically part of the program's text segment).
+  - No dynamic allocation occurs here, so no free is required or appropriate.
+
+  #### Example 2: Stack Allocation
+  ```
+  void example() {
+      char str[20] = "Hello, world!";
+      // Use the string
+      // Memory is automatically released when the function scope ends
+  }
+  ```
+  - str is an array allocated on the stack. The memory is automatically managed and freed when the function returns (i.e., when the variable goes out of scope).
+  - Stack memory is automatically cleaned up when the scope (such as a function block) ends, so there is no need (or way) to free stack-allocated memory.
+
+  ### Summary of Memory Types
+  - Heap Memory: Allocated with malloc, calloc, or realloc. You must explicitly free it with free to avoid memory leaks.
+  - Stack Memory: Automatically managed by the program. Allocated when the variable is declared and automatically freed when the variable goes out of scope.
+  - Static/Global Memory: Memory for static and global variables, allocated when the program starts and deallocated when the program ends.
+
+  ### Why Use ``free`` with ``malloc``
+  - Persistence: Memory allocated with malloc persists beyond the scope in which it was allocated until free is called.
+  - Explicit Control: malloc gives you explicit control over memory allocation and deallocation, which is necessary for managing dynamic data structures like linked lists, trees, etc.
+  - Preventing Leaks: Failure to call free results in memory leaks, where memory is no longer used but not returned to the system, which can lead to exhaustion of memory resources over time.
+
+  #### When Not to Use ``free``
+  - When memory is allocated on the stack (e.g., local variables within functions), there is no need to call free because the memory is automatically managed and released when the function exits.
+  - For string literals or memory not allocated with malloc, free is not applicable and will result in undefined behavior if attempted.
+  - By understanding the differences in memory management for dynamically and statically allocated memory, you can effectively manage resources in your C programs.

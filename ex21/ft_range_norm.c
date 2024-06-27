@@ -1,50 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcumbe-q <jcumbe-q@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 20:32:01 by jcumbe-q          #+#    #+#             */
-/*   Updated: 2024/06/26 17:14:03 by jcumbe-q         ###   ########.fr       */
+/*   Created: 2024/06/26 19:59:20 by jcumbe-q          #+#    #+#             */
+/*   Updated: 2024/06/27 16:04:53 by jcumbe-q         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strdup(char *src)
+int	*ft_range(int min, int max)
 {
-	char	*copy;
-	char	*aux;
-	int		len;
+	int	*array_int;
+	int	len;
+	int	i;
 
-	len = 0;
-	while (src[len] != '\0')
+	if (min >= max)
 	{
-		len++;
+		return (NULL);
 	}
-	copy = malloc(sizeof(char) * len + 1);
-	aux = copy;
-	while (*src != '\0')
+	i = 0;
+	len = max - min;
+	array_int = malloc(sizeof(int) * len);
+	while (min < max)
 	{
-		*aux = *src;
-		aux++;
-		src++;
+		array_int[i] = min;
+		min++;
+		i++;
 	}
-	*aux = '\0';
-	return (copy);
+	return (array_int);
 }
 
 /*int	main(void)
 {
-	char	*src;
-	char	*copy;
+	int	max;
+	int	min;
+	int	*res;
+	int	size;
 
-	src = "Hello world!";
-	copy = ft_strdup(src);
-	printf("Original: %s\n", src);
-	printf("Copy: %s\n", copy);
-	free(copy);
+	max = 10;
+	min = 1;
+	res = ft_range(min, max);
+	size = max - min;
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d, ", res[i]);
+	}
+	free(res);
 	return (0);
 }*/
