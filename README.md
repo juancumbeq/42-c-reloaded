@@ -1381,24 +1381,88 @@
 
   ## EXERCISE 22: 
   ### Description
-  - 
+  - Create a macro ``ABS`` which replaces its argument by it absolute value: ``#define ABS(Value)``
+  - You are asked to do something that is normally banned by the Norm, that will be the only time we autorize it.
   
   ### Notes
-  - 
-    ```
-    ```
+  ```
+  #define ABS(Value) ((Value) > 0 ? (Value) : ((Value) * (-1)))
+  ```
+  ```
+  #include "ft_abs.h"
+  #include <stdio.h>
+  #include <unistd.h>
+
+  int	main(void)
+  {
+    int	num;
+    int	abs;
+
+    num = -5;
+    abs = ABS(num);
+    printf("ABS: %d\n", abs);
+  }
+  ```
+
+  - The ABS macro is designed to calculate the absolute value of a given expression or value. The absolute value of a number is the non-negative value of the number without regard to its sign.
+
+  #### Explanation
+  - ``#define ABS(Value)`` defines a macro named ABS that takes a single argument named Value.
+  - ``((Value) > 0 ? (Value) : ((Value) * (-1)))`` is a ternary operator used to compute the absolute value.
+
+  #### Ternary Operator
+  - If the condition ``(Value) > 0`` is true, the macro returns ``Value`` itself because it is already positive.
+
+  - If the condition ``(Value) > 0`` is false, the macro returns ``(Value) * (-1)``, which effectively converts a negative value to its positive counterpart.
+
+  #### Example Outputs
+  - Positive Value:
+  ```
+  int a = 5;
+  printf("%d\n", ABS(a));  // Output: 5
+  ```
+    - Since 5 > 0 is true, ``ABS(a)`` evaluates to 5.
+
+  - Negative Value:
+  ```
+  int b = -3;
+  printf("%d\n", ABS(b));  // Output: 3
+  ```
+    - Since -3 > 0 is false, ``ABS(b)`` evaluates to (-3) * (-1), which is 3.
+
+  - Zero:
+  ```
+  int c = 0;
+  printf("%d\n", ABS(c));  // Output: 0
+  ```
+  - Since 0 > 0 is false, ABS(c) evaluates to 0 * (-1), which is 0.
 
 <br>
 <br>
 
   ## EXERCISE 23: 
   ### Description
-  - 
-  
+  - Create a file ``ft_point.h`` that’ll compile the following main:
+  ```
+  #include "ft_point.h"
+  void set_point(t_point *point)
+  {
+  point->x = 42;
+  point->y = 21;
+  }
+  int main(void)
+  {
+  t_point point;
+  set_point(&point);
+  return (0);
+  }
+  ```
+
   ### Notes
+  ```
+  ```
+  
   - 
-    ```
-    ```
 
 <br>
 <br>
@@ -1508,3 +1572,164 @@
   - When memory is allocated on the stack (e.g., local variables within functions), there is no need to call free because the memory is automatically managed and released when the function exits.
   - For string literals or memory not allocated with malloc, free is not applicable and will result in undefined behavior if attempted.
   - By understanding the differences in memory management for dynamically and statically allocated memory, you can effectively manage resources in your C programs.
+
+<br>
+<br>
+
+  ## What are the macros in C language
+  ChatGPT
+  Macros in C are a powerful feature provided by the C preprocessor. They allow you to define constant values, functions, and even complex code that can be reused throughout your codebase. Macros are defined using the #define directive and are processed by the preprocessor before the actual compilation of the code begins.
+
+  Types of Macros
+  Object-like Macros: These are simple macros that represent constant values or expressions.
+  Function-like Macros: These macros take arguments and are used to define inline functions or more complex expressions.
+  Conditional Compilation Macros: These macros are used to conditionally include or exclude parts of the code.
+  1. Object-like Macros
+  Object-like macros are used to define constants or expressions. They are similar to constants in other programming languages.
+
+  Example:
+
+  c
+  Copiar código
+  #define PI 3.14159
+  #define MAX_BUFFER_SIZE 1024
+
+  int main() {
+      double radius = 5.0;
+      double area = PI * radius * radius;
+      char buffer[MAX_BUFFER_SIZE];
+      // Use buffer
+      return 0;
+  }
+  2. Function-like Macros
+  Function-like macros take arguments and can be used to create inline functions or more complex expressions.
+
+  Example:
+
+  c
+  Copiar código
+  #define SQUARE(x) ((x) * (x))
+  #define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+  int main() {
+      int num = 4;
+      int result = SQUARE(num);  // Expands to ((4) * (4))
+      int max_val = MAX(10, 20); // Expands to ((10) > (20) ? (10) : (20))
+      return 0;
+  }
+  3. Conditional Compilation Macros
+  These macros control the inclusion or exclusion of parts of the code based on certain conditions. This is useful for platform-specific code or for debugging purposes.
+
+  Example:
+
+  c
+  Copiar código
+  #define DEBUG
+
+  int main() {
+      int a = 5;
+      int b = 10;
+      
+  #ifdef DEBUG
+      printf("Debugging: a = %d, b = %d\n", a, b);
+  #endif
+
+      return 0;
+  }
+  In this example, the printf statement will only be included in the compiled code if DEBUG is defined.
+
+  Advantages of Macros
+  Code Reusability: Macros allow you to define code that can be reused throughout your program.
+  Performance: Function-like macros can be used to create inline functions, which can improve performance by avoiding function call overhead.
+  Conditional Compilation: Conditional compilation macros enable you to include or exclude code based on specific conditions, which is useful for platform-specific code and debugging.
+  Disadvantages of Macros
+  No Type Checking: Macros do not perform type checking, which can lead to errors that are difficult to debug.
+  Complexity: Macros can make code harder to read and understand, especially if they are overly complex.
+  Scope Issues: Macros are expanded by the preprocessor and do not respect C's scope rules, which can lead to unexpected behaviors.
+  Best Practices for Using Macros
+  Use Constants and Inline Functions When Possible: Prefer using const variables and inline functions instead of macros for type safety and better readability.
+  Use Parentheses: When defining function-like macros, use parentheses to ensure correct evaluation order.
+  Keep Macros Simple: Avoid overly complex macros to keep your code readable and maintainable.
+  Document Macros: Clearly document what each macro does and its intended use.
+  Example of a Well-Documented Macro
+  c
+  Copiar código
+  // Define a macro to calculate the area of a circle
+  #define AREA_OF_CIRCLE(radius) (PI * (radius) * (radius))
+
+  int main() {
+      double radius = 5.0;
+      double area = AREA_OF_CIRCLE(radius);  // Expands to (3.14159 * (5.0) * (5.0))
+      return 0;
+  }
+  In this example, the macro AREA_OF_CIRCLE is well-defined and documented, making the code easier to read and understand.
+
+  By using macros appropriately, you can enhance the flexibility and efficiency of your C programs while maintaining readability and maintainability.
+
+<br>
+<br>
+
+  ## How do i export a function like macro?
+  ChatGPT
+  To "export" a function-like macro, you generally include it in a header file. This way, any source file that includes this header file will have access to the macro. Here's a step-by-step guide on how to do this:
+
+  Step-by-Step Guide to Export a Function-like Macro
+  Define the Macro in a Header File
+  Include the Header File in Your Source Files
+  1. Define the Macro in a Header File
+  Create a header file, for example, my_macros.h, and define your function-like macro in it.
+
+  my_macros.h:
+
+  c
+  Copiar código
+  #ifndef MY_MACROS_H
+  #define MY_MACROS_H
+
+  #define SQUARE(x) ((x) * (x))
+  #define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+  #endif // MY_MACROS_H
+  2. Include the Header File in Your Source Files
+  Include the header file in any source file where you want to use the macro.
+
+  main.c:
+
+  c
+  Copiar código
+  #include <stdio.h>
+  #include "my_macros.h"
+
+  int main() {
+      int num = 4;
+      int result = SQUARE(num);  // Expands to ((4) * (4))
+      int max_val = MAX(10, 20); // Expands to ((10) > (20) ? (10) : (20))
+
+      printf("Square of %d is %d\n", num, result);
+      printf("Max of 10 and 20 is %d\n", max_val);
+
+      return 0;
+  }
+  Explanation
+  Header File Guard:
+
+  The #ifndef, #define, and #endif directives are used to prevent multiple inclusions of the same header file. This is known as an include guard. It ensures that the content of the header file is only included once per translation unit.
+  Macro Definitions:
+
+  The #define directive is used to define the macros SQUARE and MAX. These macros will be replaced by their corresponding expressions during preprocessing.
+  Including the Header File:
+
+  In main.c, the #include "my_macros.h" directive is used to include the header file. This makes the macros defined in my_macros.h available in main.c.
+  Using the Macros:
+
+  The macros SQUARE and MAX can now be used in main.c. The preprocessor will replace the macro calls with the corresponding expressions defined in the header file.
+  Additional Tips
+  Naming Conventions: Use clear and descriptive names for your macros to avoid naming conflicts and to make your code more readable.
+  Parentheses: Always use parentheses around macro parameters and the entire macro definition to ensure correct evaluation order and avoid unexpected behaviors.
+  Example:
+
+  c
+  Copiar código
+  #define SQUARE(x) ((x) * (x))  // Ensures correct evaluation order
+  #define MAX(a, b) ((a) > (b) ? (a) : (b))
+  By following these steps, you can effectively export and use function-like macros across multiple source files in your C programs.
