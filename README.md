@@ -1577,20 +1577,18 @@
 <br>
 
   ## What are the macros in C language
-  ChatGPT
   Macros in C are a powerful feature provided by the C preprocessor. They allow you to define constant values, functions, and even complex code that can be reused throughout your codebase. Macros are defined using the #define directive and are processed by the preprocessor before the actual compilation of the code begins.
 
-  Types of Macros
-  Object-like Macros: These are simple macros that represent constant values or expressions.
-  Function-like Macros: These macros take arguments and are used to define inline functions or more complex expressions.
-  Conditional Compilation Macros: These macros are used to conditionally include or exclude parts of the code.
-  1. Object-like Macros
+  ### Types of Macros
+  - **Object-like Macros**: These are simple macros that represent constant values or expressions.
+  - **Function-like Macros**: These macros take arguments and are used to define inline functions or more complex expressions.
+  - **Conditional Compilation Macros**: These macros are used to conditionally include or exclude parts of the code.
+
+  ### Object-like Macros
   Object-like macros are used to define constants or expressions. They are similar to constants in other programming languages.
 
   Example:
-
-  c
-  Copiar código
+  ```
   #define PI 3.14159
   #define MAX_BUFFER_SIZE 1024
 
@@ -1601,13 +1599,13 @@
       // Use buffer
       return 0;
   }
-  2. Function-like Macros
+  ```
+
+  ### Function-like Macros
   Function-like macros take arguments and can be used to create inline functions or more complex expressions.
 
   Example:
-
-  c
-  Copiar código
+  ```
   #define SQUARE(x) ((x) * (x))
   #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
@@ -1617,13 +1615,13 @@
       int max_val = MAX(10, 20); // Expands to ((10) > (20) ? (10) : (20))
       return 0;
   }
-  3. Conditional Compilation Macros
+  ```
+  
+  ### Conditional Compilation Macros
   These macros control the inclusion or exclusion of parts of the code based on certain conditions. This is useful for platform-specific code or for debugging purposes.
 
   Example:
-
-  c
-  Copiar código
+  ```
   #define DEBUG
 
   int main() {
@@ -1636,53 +1634,39 @@
 
       return 0;
   }
+  ```
+
   In this example, the printf statement will only be included in the compiled code if DEBUG is defined.
 
-  Advantages of Macros
-  Code Reusability: Macros allow you to define code that can be reused throughout your program.
-  Performance: Function-like macros can be used to create inline functions, which can improve performance by avoiding function call overhead.
-  Conditional Compilation: Conditional compilation macros enable you to include or exclude code based on specific conditions, which is useful for platform-specific code and debugging.
-  Disadvantages of Macros
-  No Type Checking: Macros do not perform type checking, which can lead to errors that are difficult to debug.
-  Complexity: Macros can make code harder to read and understand, especially if they are overly complex.
-  Scope Issues: Macros are expanded by the preprocessor and do not respect C's scope rules, which can lead to unexpected behaviors.
-  Best Practices for Using Macros
-  Use Constants and Inline Functions When Possible: Prefer using const variables and inline functions instead of macros for type safety and better readability.
-  Use Parentheses: When defining function-like macros, use parentheses to ensure correct evaluation order.
-  Keep Macros Simple: Avoid overly complex macros to keep your code readable and maintainable.
-  Document Macros: Clearly document what each macro does and its intended use.
-  Example of a Well-Documented Macro
-  c
-  Copiar código
-  // Define a macro to calculate the area of a circle
-  #define AREA_OF_CIRCLE(radius) (PI * (radius) * (radius))
-
-  int main() {
-      double radius = 5.0;
-      double area = AREA_OF_CIRCLE(radius);  // Expands to (3.14159 * (5.0) * (5.0))
-      return 0;
-  }
-  In this example, the macro AREA_OF_CIRCLE is well-defined and documented, making the code easier to read and understand.
-
-  By using macros appropriately, you can enhance the flexibility and efficiency of your C programs while maintaining readability and maintainability.
+  ### Advantages of Macros
+  - **Code Reusability**: Macros allow you to define code that can be reused throughout your program.
+  - **Performance**: Function-like macros can be used to create inline functions, which can improve performance by avoiding function call overhead.
+  - **Conditional Compilation**: Conditional compilation macros enable you to include or exclude code based on specific conditions, which is useful for platform-specific code and debugging.
+  
+  ### Disadvantages of Macros
+  - **No Type Checking**: Macros do not perform type checking, which can lead to errors that are difficult to debug.
+  - **Complexity**: Macros can make code harder to read and understand, especially if they are overly complex.
+  - **Scope Issues**: Macros are expanded by the preprocessor and do not respect C's scope rules, which can lead to unexpected behaviors.
+  
+  ### Best Practices for Using Macros
+  - **Use Constants and Inline Functions When Possible**: Prefer using const variables and inline functions instead of macros for type safety and better readability.
+  - **Use Parentheses**: When defining function-like macros, use parentheses to ensure correct evaluation order.
+  - **Keep Macros Simple**: Avoid overly complex macros to keep your code readable and maintainable.
+  - **Document Macros**: Clearly document what each macro does and its intended use.
 
 <br>
 <br>
 
-  ## How do i export a function like macro?
-  ChatGPT
+  ## How do i export a function-like macro?
   To "export" a function-like macro, you generally include it in a header file. This way, any source file that includes this header file will have access to the macro. Here's a step-by-step guide on how to do this:
 
   Step-by-Step Guide to Export a Function-like Macro
-  Define the Macro in a Header File
-  Include the Header File in Your Source Files
-  1. Define the Macro in a Header File
-  Create a header file, for example, my_macros.h, and define your function-like macro in it.
-
-  my_macros.h:
-
-  c
-  Copiar código
+  - Define the Macro in a Header File
+  - Include the Header File in Your Source Files
+  
+  ### Define the Macro in a Header File
+  Create a header file, for example, ``my_macros.h``, and define your function-like macro in it.
+  ```
   #ifndef MY_MACROS_H
   #define MY_MACROS_H
 
@@ -1690,13 +1674,11 @@
   #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
   #endif // MY_MACROS_H
-  2. Include the Header File in Your Source Files
+  ```
+
+  ### Include the Header File in Your Source Files
   Include the header file in any source file where you want to use the macro.
-
-  main.c:
-
-  c
-  Copiar código
+  ```
   #include <stdio.h>
   #include "my_macros.h"
 
@@ -1710,26 +1692,110 @@
 
       return 0;
   }
-  Explanation
-  Header File Guard:
+  ```
+  ### Explanation
+  - Header File Guard:
+    - The ``#ifndef``, ``#define``, and ``#endif`` directives are used to prevent multiple inclusions of the same header file. This is known as an include guard. It ensures that the content of the header file is only included once per translation unit.
 
-  The #ifndef, #define, and #endif directives are used to prevent multiple inclusions of the same header file. This is known as an include guard. It ensures that the content of the header file is only included once per translation unit.
-  Macro Definitions:
+  - Macro Definitions:
+    - The ``#define`` directive is used to define the macros ``SQUARE`` and ``MAX``. These macros will be replaced by their corresponding expressions during preprocessing.
 
-  The #define directive is used to define the macros SQUARE and MAX. These macros will be replaced by their corresponding expressions during preprocessing.
-  Including the Header File:
+  - Including the Header File:
+    - In main.c, the ``#include "my_macros.h"`` directive is used to include the header file. This makes the macros defined in ``my_macros.h`` available in ``main.c``.
 
-  In main.c, the #include "my_macros.h" directive is used to include the header file. This makes the macros defined in my_macros.h available in main.c.
-  Using the Macros:
+  - Using the Macros:
+    - The macros ``SQUARE`` and ``MAX`` can now be used in ``main.c``. The preprocessor will replace the macro calls with the corresponding expressions defined in the header file.
 
-  The macros SQUARE and MAX can now be used in main.c. The preprocessor will replace the macro calls with the corresponding expressions defined in the header file.
-  Additional Tips
-  Naming Conventions: Use clear and descriptive names for your macros to avoid naming conflicts and to make your code more readable.
-  Parentheses: Always use parentheses around macro parameters and the entire macro definition to ensure correct evaluation order and avoid unexpected behaviors.
-  Example:
+  ### Additional Tips
+    - **Naming Conventions**: Use clear and descriptive names for your macros to avoid naming conflicts and to make your code more readable.
+    - **Parentheses**: Always use parentheses around macro parameters and the entire macro definition to ensure correct evaluation order and avoid unexpected behaviors.
 
-  c
-  Copiar código
-  #define SQUARE(x) ((x) * (x))  // Ensures correct evaluation order
-  #define MAX(a, b) ((a) > (b) ? (a) : (b))
-  By following these steps, you can effectively export and use function-like macros across multiple source files in your C programs.
+<br>
+<br>
+
+  ## What are the ``#ifndef``, ``#define``, and ``#endif`` directives
+  The ``#ifndef`` and ``#endif`` directives in C are part of the preprocessor commands that help manage the compilation process. They are primarily used to prevent multiple inclusions of the same header file, a technique known as an "include guard". This is important in larger projects where a header file might be included in multiple source files, potentially leading to redefinition errors and increased compilation times.
+
+  ### ``#ifndef``:- 
+  - Stands for "if not defined."
+  - It checks if a specific macro (often a unique identifier for a header file) has not been defined previously.
+  - If the macro has not been defined, the code between ``#ifndef`` and the corresponding ``#endif`` will be included in the compilation.
+  
+  ### ``#endif``:
+  - Stands for "end if."
+  - It marks the end of the conditional inclusion started by #ifndef.
+
+  ### How Include Guards Work
+  To understand how these directives work, let's look at a step-by-step example.
+
+  Example: Using Include Guards
+  
+  #### Creating a Header File with Include Guards:
+  - Create a header file named my_header.h:
+  ```
+  // my_header.h
+
+  #ifndef MY_HEADER_H
+  #define MY_HEADER_H
+
+  // Your header file content here
+  void my_function();
+
+  #endif // MY_HEADER_H
+  ```
+  
+  #### Explanation of the Header File:
+  ```
+  #ifndef MY_HEADER_H
+  ```
+  - This checks if ``MY_HEADER_H`` has not been defined yet.
+  - If ``MY_HEADER_H`` is not defined, it continues to the next line.
+
+  ```
+  #define MY_HEADER_H
+  ```
+  - This defines the macro ``MY_HEADER_H`` to ensure the file content is not included more than once.
+  
+  ```
+  // Your header file content here
+  void my_function();
+  ```
+  -  Here, you place the actual content of the header file, such as function declarations, type definitions, etc.
+  
+  ```
+  #endif // MY_HEADER_H
+  ```
+  - This ends the conditional inclusion started by #ifndef.
+  
+  #### Including the Header File in Multiple Source Files:
+  Now, suppose you have two source files, ``main.c`` and ``other.c``, both including ``my_header.h``.
+  ```
+  // main.c
+  #include "my_header.h"
+
+  int main() {
+      my_function();
+      return 0;
+  }
+  ```
+  ```
+  // other.c
+  #include "my_header.h"
+
+  void another_function() {
+      my_function();
+  }
+  ```
+
+  ### How the Include Guards Prevent Multiple Inclusions:
+  - When ``my_header.h`` is included in ``main.c`` for the first time, ``MY_HEADER_H`` is not defined, so the preprocessor defines ``MY_HEADER_H`` and includes the content of the header file.
+
+  - When ``my_header.h`` is included in ``other.c``, the preprocessor again encounters ``#ifndef MY_HEADER_H``. This time, ``MY_HEADER_H`` is already defined (from the inclusion in ``main.c``), so it skips the content of the header file, preventing multiple definitions.
+
+  ### Advantages of Include Guards
+  - Prevent Multiple Inclusions:
+    - Avoids multiple definitions of the same identifiers, which can lead to compilation errors.
+  - Reduce Compilation Time:
+    - By preventing multiple inclusions, the compiler does not repeatedly process the same file, improving compilation efficiency.
+  - Improve Code Maintainability:
+    - Makes it clear which headers have been processed, reducing the chances of errors when modifying or adding to the codebase.
