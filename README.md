@@ -1460,9 +1460,73 @@
 
   ### Notes
   ```
+  #ifndef FT_POINT_H
+  #define FT_POINT_H
+
+  typedef struct s_point
+  {
+    int x;
+    int y;
+  } t_point;
+
+  #endif
   ```
   
-  - 
+  #### Header File: ft_point.h
+  This file defines the ``t_point`` structure and uses include guards to prevent multiple inclusions:
+
+  - ``#ifndef FT_POINT_H`` and ``#define FT_POINT_H``: These lines start the include guard, which prevents the contents of the file from being included multiple times in a single compilation.
+  
+  - ``typedef struct s_point { int x; int y; } t_point;``: This defines a structure ``s_point`` with two integer members (x and y) and creates an alias ``t_point`` for this structure.
+
+  #### Source File: Main Program
+  - ``#include "ft_point.h"``: This line includes the header file, making the ``t_point`` type definition available in the source file.
+
+  - ``void set_point(t_point *point)``: This function takes a pointer to a ``t_point`` structure and sets the values of its members.
+    - ``point->x = 42;`` and ``point->y = 21;``: These lines set the ``x`` and ``y`` members of the ``t_point`` structure pointed to by ``point``.
+  
+  #### Detailed Explanation of ``point->x``
+  - Pointer to Structure:
+    - In C, you can use pointers to structures to efficiently pass and manipulate structure data.
+  
+  #### Arrow Operator (->)
+  - ``point->x`` is used to access the ``x`` member of the structure pointed to by point.
+  - The arrow operator ``->`` is used when you have a pointer to a structure and you want to access one of its members.
+
+  #### Syntax and Functionality of ``point->x``
+  - Declaration:
+  ```
+  t_point point;
+  ```
+
+  This declares a variable point of type t_point.
+
+  - Function Call:
+  ```
+  set_point(&point);
+  ```
+
+  This calls the function ``set_point`` with the address of point. The ``&`` operator is used to get the address of the variable point, making ``set_point`` receive a pointer to point.
+
+  - Function Definition:
+  ```
+  void set_point(t_point *point)
+  {
+      point->x = 42;
+      point->y = 21;
+  }
+  ```
+
+  - ``t_point *point``: The parameter point is a pointer to a t_point structure.
+  - ``point->x = 42;``: The arrow operator ``->`` is used to access and set the x member of the structure pointed to by point.
+  - ``point->y = 21;``: Similarly, the y member is set to 21.
+
+  #### Why Use Pointers to Structures?
+  - Efficiency:
+    - Passing a pointer to a structure (which is typically a small, fixed size) is more efficient than passing the entire structure by value, especially for large structures.
+
+  - Direct Modification:
+    - When a function receives a pointer to a structure, it can modify the actual structure's members directly. Changes made to the structure's members within the function persist after the function returns.
 
 <br>
 <br>
@@ -1472,9 +1536,10 @@
   - 
   
   ### Notes
+  ```
+  ```
   - 
-    ```
-    ```
+  
 <br>
 <br>
 
@@ -1483,9 +1548,10 @@
   - 
   
   ### Notes
+
+  ```
+  ```
   - 
-    ```
-    ```
 
 
 <br>
@@ -1496,9 +1562,10 @@
   - 
   
   ### Notes
+
+  ```
+  ```
   - 
-    ```
-    ```
 
 
 <br>
@@ -1509,9 +1576,10 @@
   - 
   
   ### Notes
+
+  ```
+  ```
   - 
-    ```
-    ```
 
 
 
@@ -1707,8 +1775,8 @@
     - The macros ``SQUARE`` and ``MAX`` can now be used in ``main.c``. The preprocessor will replace the macro calls with the corresponding expressions defined in the header file.
 
   ### Additional Tips
-    - **Naming Conventions**: Use clear and descriptive names for your macros to avoid naming conflicts and to make your code more readable.
-    - **Parentheses**: Always use parentheses around macro parameters and the entire macro definition to ensure correct evaluation order and avoid unexpected behaviors.
+  - **Naming Conventions**: Use clear and descriptive names for your macros to avoid naming conflicts and to make your code more readable.
+  - **Parentheses**: Always use parentheses around macro parameters and the entire macro definition to ensure correct evaluation order and avoid unexpected behaviors.
 
 <br>
 <br>
