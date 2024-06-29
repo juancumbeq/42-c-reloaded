@@ -1533,13 +1533,24 @@
 
   ## EXERCISE 24: 
   ### Description
-  - 
-  
+  - Create the **Makefile** that’ll compile your **libft.a**.
+
+  - The **Makefile** will get its source files from the "srcs" directory.
+
+  - The **Makefile** will get its header files from the "includes" directory.
+
+  - The lib will be at the root of the exercise.
+
+  - The **Makefile** should also implement the following rules: clean, **fclean** and re as well as all.
+
+  - **fclean** does the equivalent of a make clean and also erases the binary created during the make. re does the equivalent of a make **fclean** followed by a make.
+  - We’ll only fetch your **Makefile** and test it with our files. For this exercise, only the following 5 mandatory functions of your lib have to be handled : (**ft_putchar**, **ft_putstr**, **ft_strcmp**, **ft_strlen** and **ft_swap**).
+
   ### Notes
   ```
   ```
   - 
-  
+
 <br>
 <br>
 
@@ -1867,3 +1878,180 @@
     - By preventing multiple inclusions, the compiler does not repeatedly process the same file, improving compilation efficiency.
   - Improve Code Maintainability:
     - Makes it clear which headers have been processed, reducing the chances of errors when modifying or adding to the codebase.
+
+<br>
+<br>
+
+  ##  Makefile
+  A Makefile is a special file used by the make build automation tool to manage the compilation and linking process of a C (or other language) project. It defines rules and dependencies for building the project's executable or other targets. Makefiles help automate repetitive tasks, ensure that only the necessary parts of the project are recompiled, and can manage complex build workflows.
+
+Key Concepts of a Makefile
+Targets: A target is typically a file that needs to be built, such as an executable or object file. It can also be a phony target, which is not a file but a label for a set of commands to be executed.
+
+Dependencies: Dependencies are files that a target depends on. If any dependency is newer than the target, the target needs to be rebuilt.
+
+Commands: Commands are the shell commands that make executes to build a target. These commands are typically compilation and linking commands.
+
+Basic Structure of a Makefile
+Here is a simple example of a Makefile for a C project:
+```
+# Define the compiler to be used
+CC = gcc
+
+# Define compiler flags
+CFLAGS = -Wall -Wextra -g
+
+# Define the target executable
+TARGET = my_program
+
+# Define the source files
+SRCS = main.c foo.c bar.c
+
+# Define the object files
+OBJS = $(SRCS:.c=.o)
+
+# Default target
+all: $(TARGET)
+
+# Rule to build the target executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Rule to build object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up generated files
+clean:
+	rm -f $(TARGET) $(OBJS)
+```
+
+Explanation of the Example
+Variables:
+
+CC: Specifies the compiler to use (gcc).
+CFLAGS: Compiler flags, such as -Wall (enable all warnings), -Wextra (enable extra warnings), and -g (generate debug information).
+TARGET: The name of the final executable.
+SRCS: List of source files.
+OBJS: List of object files, automatically derived from the source files by replacing .c with .o.
+Default Target (all):
+
+all: The default target, which depends on the target executable ($(TARGET)).
+Target Rule ($(TARGET)):
+
+$(TARGET): Specifies that the target executable depends on the object files ($(OBJS)).
+The command $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) links the object files to create the executable.
+Object File Rule (%.o: %.c):
+
+%.o: %.c: A pattern rule that defines how to build an object file (%.o) from a source file (%.c).
+The command $(CC) $(CFLAGS) -c $< -o $@ compiles the source file ($<) into an object file ($@).
+Clean Target (clean):
+
+clean: A phony target that removes the generated executable and object files. The rm -f $(TARGET) $(OBJS) command deletes these files.
+Using the Makefile
+To use the Makefile, open a terminal in the directory containing the Makefile and run the make command. By default, make will execute the first target, which is all in this case.
+
+sh
+Copiar código
+make
+To clean up the generated files, you can run:
+
+sh
+Copiar código
+make clean
+Advantages of Using a Makefile
+Automation: Automates the build process, reducing the chance of human error.
+Efficiency: Only rebuilds the parts of the project that have changed, saving time.
+Reproducibility: Ensures consistent builds across different environments.
+Complex Builds: Can handle complex build rules and dependencies, useful for large projects.
+Makefiles are powerful tools that streamline the compilation process, making it easier to manage and build C projects, especially as they grow in size and complexity.
+
+<br>
+<br>
+
+## explain me the difference between this:
+
+# Define the target executable
+TARGET = my_program
+
+
+and this:
+# Default target
+all: $(TARGET)
+
+ChatGPT
+Certainly! Let’s break down the roles of these two lines in a Makefile and understand their differences:
+
+TARGET = my_program
+This line is a variable definition in the Makefile:
+
+Makefile
+Copiar código
+# Define the target executable
+TARGET = my_program
+Purpose: It defines a variable named TARGET and assigns it the value my_program.
+Usage: This variable is used to store the name of the final executable file. By using a variable, you can easily change the name of the executable by modifying this single line.
+Not an Instruction: This line itself does not perform any build action; it simply sets up a variable for use later in the Makefile.
+all: $(TARGET)
+This line defines a target and its dependencies:
+
+Makefile
+Copiar código
+# Default target
+all: $(TARGET)
+Purpose: It defines a target named all and specifies that it depends on the target defined by the variable $(TARGET), which is my_program.
+Default Target: The all target is typically used as the default build target. When you run make without specifying any target, make will use the first target in the Makefile, which is conventionally all.
+Dependency Management: By specifying $(TARGET) as a dependency, it instructs make to ensure that $(TARGET) is up-to-date. If $(TARGET) is not up-to-date, make will execute the rules required to build $(TARGET).
+How They Work Together
+Variable Definition (TARGET = my_program):
+
+This line sets up a reusable variable. Any occurrence of $(TARGET) in the Makefile will be replaced with my_program.
+Target Definition (all: $(TARGET)):
+
+This line tells make that the all target depends on $(TARGET) (which is my_program).
+When you run make all or simply make, make will ensure that my_program is up-to-date by executing the necessary commands.
+Example Makefile
+Here is how they fit into a complete Makefile:
+
+Makefile
+Copiar código
+# Define the compiler to be used
+CC = gcc
+
+# Define compiler flags
+CFLAGS = -Wall -Wextra -g
+
+# Define the target executable
+TARGET = my_program
+
+# Define the source files
+SRCS = main.c foo.c bar.c
+
+# Define the object files by replacing .c with .o in the SRCS variable
+OBJS = $(SRCS:.c=.o)
+
+# Default target
+all: $(TARGET)
+
+# Rule to build the target executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+# Rule to build object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up generated files
+clean:
+	rm -f $(TARGET) $(OBJS)
+Execution Flow
+Define Variables: TARGET is set to my_program.
+Default Target (all): When you run make, make will look for the first target, which is all.
+Dependency (all: $(TARGET)): all depends on my_program (the value of $(TARGET)).
+Build Process for $(TARGET):
+make checks if my_program needs to be rebuilt.
+If my_program is out-of-date, make will follow the rule $(TARGET): $(OBJS) to build it, which involves compiling the object files and linking them.
+Summary
+TARGET = my_program: This line defines a variable that holds the name of the executable.
+all: $(TARGET): This line defines the default build target (all) and specifies that building all requires $(TARGET) to be up-to-date.
+By separating these concerns, the Makefile becomes more flexible and easier to maintain. You can change the name of the executable by modifying the TARGET variable without changing multiple places in the Makefile, and the all target ensures a standard entry point for building the project.
