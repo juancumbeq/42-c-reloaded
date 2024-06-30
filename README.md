@@ -1885,86 +1885,86 @@
   ##  Makefile
   A Makefile is a special file used by the make build automation tool to manage the compilation and linking process of a C (or other language) project. It defines rules and dependencies for building the project's executable or other targets. Makefiles help automate repetitive tasks, ensure that only the necessary parts of the project are recompiled, and can manage complex build workflows.
 
-Key Concepts of a Makefile
-Targets: A target is typically a file that needs to be built, such as an executable or object file. It can also be a phony target, which is not a file but a label for a set of commands to be executed.
+  Key Concepts of a Makefile
+  Targets: A target is typically a file that needs to be built, such as an executable or object file. It can also be a phony target, which is not a file but a label for a set of commands to be executed.
 
-Dependencies: Dependencies are files that a target depends on. If any dependency is newer than the target, the target needs to be rebuilt.
+  Dependencies: Dependencies are files that a target depends on. If any dependency is newer than the target, the target needs to be rebuilt.
 
-Commands: Commands are the shell commands that make executes to build a target. These commands are typically compilation and linking commands.
+  Commands: Commands are the shell commands that make executes to build a target. These commands are typically compilation and linking commands.
 
-Basic Structure of a Makefile
-Here is a simple example of a Makefile for a C project:
-```
-# Define the compiler to be used
-CC = gcc
+  Basic Structure of a Makefile
+  Here is a simple example of a Makefile for a C project:
+  ```
+  # Define the compiler to be used
+  CC = gcc
 
-# Define compiler flags
-CFLAGS = -Wall -Wextra -g
+  # Define compiler flags
+  CFLAGS = -Wall -Wextra -g
 
-# Define the target executable
-TARGET = my_program
+  # Define the target executable
+  TARGET = my_program
 
-# Define the source files
-SRCS = main.c foo.c bar.c
+  # Define the source files
+  SRCS = main.c foo.c bar.c
 
-# Define the object files
-OBJS = $(SRCS:.c=.o)
+  # Define the object files
+  OBJS = $(SRCS:.c=.o)
 
-# Default target
-all: $(TARGET)
+  # Default target
+  all: $(TARGET)
 
-# Rule to build the target executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+  # Rule to build the target executable
+  $(TARGET): $(OBJS)
+    $(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to build object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+  # Rule to build object files
+  %.o: %.c
+    $(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up generated files
-clean:
-	rm -f $(TARGET) $(OBJS)
-```
+  # Clean up generated files
+  clean:
+    rm -f $(TARGET) $(OBJS)
+  ```
 
-Explanation of the Example
-Variables:
+  Explanation of the Example
+  Variables:
 
-CC: Specifies the compiler to use (gcc).
-CFLAGS: Compiler flags, such as -Wall (enable all warnings), -Wextra (enable extra warnings), and -g (generate debug information).
-TARGET: The name of the final executable.
-SRCS: List of source files.
-OBJS: List of object files, automatically derived from the source files by replacing .c with .o.
-Default Target (all):
+  CC: Specifies the compiler to use (gcc).
+  CFLAGS: Compiler flags, such as -Wall (enable all warnings), -Wextra (enable extra warnings), and -g (generate debug information).
+  TARGET: The name of the final executable.
+  SRCS: List of source files.
+  OBJS: List of object files, automatically derived from the source files by replacing .c with .o.
+  Default Target (all):
 
-all: The default target, which depends on the target executable ($(TARGET)).
-Target Rule ($(TARGET)):
+  all: The default target, which depends on the target executable ($(TARGET)).
+  Target Rule ($(TARGET)):
 
-$(TARGET): Specifies that the target executable depends on the object files ($(OBJS)).
-The command $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) links the object files to create the executable.
-Object File Rule (%.o: %.c):
+  $(TARGET): Specifies that the target executable depends on the object files ($(OBJS)).
+  The command $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) links the object files to create the executable.
+  Object File Rule (%.o: %.c):
 
-%.o: %.c: A pattern rule that defines how to build an object file (%.o) from a source file (%.c).
-The command $(CC) $(CFLAGS) -c $< -o $@ compiles the source file ($<) into an object file ($@).
-Clean Target (clean):
+  %.o: %.c: A pattern rule that defines how to build an object file (%.o) from a source file (%.c).
+  The command $(CC) $(CFLAGS) -c $< -o $@ compiles the source file ($<) into an object file ($@).
+  Clean Target (clean):
 
-clean: A phony target that removes the generated executable and object files. The rm -f $(TARGET) $(OBJS) command deletes these files.
-Using the Makefile
-To use the Makefile, open a terminal in the directory containing the Makefile and run the make command. By default, make will execute the first target, which is all in this case.
+  clean: A phony target that removes the generated executable and object files. The rm -f $(TARGET) $(OBJS) command deletes these files.
+  Using the Makefile
+  To use the Makefile, open a terminal in the directory containing the Makefile and run the make command. By default, make will execute the first target, which is all in this case.
 
-sh
-Copiar código
-make
-To clean up the generated files, you can run:
+  sh
+  Copiar código
+  make
+  To clean up the generated files, you can run:
 
-sh
-Copiar código
-make clean
-Advantages of Using a Makefile
-Automation: Automates the build process, reducing the chance of human error.
-Efficiency: Only rebuilds the parts of the project that have changed, saving time.
-Reproducibility: Ensures consistent builds across different environments.
-Complex Builds: Can handle complex build rules and dependencies, useful for large projects.
-Makefiles are powerful tools that streamline the compilation process, making it easier to manage and build C projects, especially as they grow in size and complexity.
+  sh
+  Copiar código
+  make clean
+  Advantages of Using a Makefile
+  Automation: Automates the build process, reducing the chance of human error.
+  Efficiency: Only rebuilds the parts of the project that have changed, saving time.
+  Reproducibility: Ensures consistent builds across different environments.
+  Complex Builds: Can handle complex build rules and dependencies, useful for large projects.
+  Makefiles are powerful tools that streamline the compilation process, making it easier to manage and build C projects, especially as they grow in size and complexity.
 
 <br>
 <br>
