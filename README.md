@@ -1886,7 +1886,7 @@
   A Makefile is a special file used by the make build automation tool to manage the compilation and linking process of a C (or other language) project. It defines rules and dependencies for building the project's executable or other targets. Makefiles help automate repetitive tasks, ensure that only the necessary parts of the project are recompiled, and can manage complex build workflows.
 
   Key Concepts of a Makefile
-  Targets: A target is typically a file that needs to be built, such as an executable or object file. It can also be a phony target, which is not a file but a label for a set of commands to be executed.
+  Targets: A target is typically a file that needs to be built, such as an executable or object file. It can also be a p hony target, which is not a file but a label for a set of commands to be executed.
 
   Dependencies: Dependencies are files that a target depends on. If any dependency is newer than the target, the target needs to be rebuilt.
 
