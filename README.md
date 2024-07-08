@@ -1548,8 +1548,100 @@
 
   ### Notes
   ```
+  NAME = libft.a
+  SONAME = libft.so
+  CC = cc
+  FLAGS = -Wall -Wextra -Werror -I./ -c
+  FILES = $(wildcard src/*.c)
+  HEADERS = $(wildcard includes/*.h) 
+
+  OBJ = $(FILES:src/%.c=%.o)
+
+  $(NAME): $(OBJ)
+      ar rcs $(NAME) $(HEADERS) $(OBJ)
+
+  $(OBJ): $(FILES)
+      gcc $(FLAGS) $(HEADERS) $(FILES)
+
+  all: $(NAME)
+
+  clean:
+      rm -f $(OBJ)
+  fclean: clean
+      rm -f $(NAME)
+      rm -f $(SONAME)
+  re: fclean all
+
+  so:		
+      gcc -shared -o $(SONAME) -fPIC $(FILES)
+
+  .PHONY: all clean fclean re so bonus
   ```
-  - 
+  - This Makefile is used to compile and manage a C project with a library named **libft**. Below is a detailed explanation of each part:
+
+  #### Variables
+  - ``NAME`` = ``libft.a``: The name of the static library to be created.
+
+  - ``SONAME`` = ``libft.so``: The name of the shared library (dynamic library) to be created.
+
+  - ``CC`` = ``cc``: The compiler to be used (in this case, the C compiler cc).
+
+  - ``FLAGS`` = ``-Wall -Wextra -Werror -I./ -c``: Compilation flags:
+
+    - ``-Wall``: Enable all compiler's warning messages.
+    - ``-Wextra``: Enable some extra warning flags.
+    - ``-Werror``: Treat all warnings as errors.
+    - ``-I./``: Add the current directory to the list of directories to be searched for header files.
+    - ``-c``: Compile the source files into object files without linking.
+
+  - ``FILES`` = ``$(wildcard src/*.c)``: This will find all **.c** files in the **src** directory.
+
+  - ``HEADERS`` = ``$(wildcard includes/*.h)``: This will find all **.h** files in the includes directory.
+
+  - ``OBJ`` = ``$(FILES:src/%.c=%.o)``: This variable uses pattern substitution to replace the **src/** prefix and **.c** suffix with **.o** for each file found in **FILES**. It generates a list of object files.
+
+  #### Rules
+  - ``$(NAME): $(OBJ)``
+    - This rule specifies that the target ``$(NAME)`` (i.e., ``libft.a``) depends on the object files (``$(OBJ)``).
+    - The command ``ar rcs $(NAME) $(HEADERS) $(OBJ)``:
+      - ``ar``: The archiver command to create, modify, and extract from archives.
+      - ``rcs``: Options for ``ar``:
+        - ``r``: Insert the files into the archive, replacing any existing files of the same name.
+        - ``c``: Create the archive if it does not exist.
+        - ``s``: Write an index to the archive, or update it if it already exists.
+      - This command creates the static library ``$(NAME)`` from the object files and headers.
+
+  - ``$(OBJ): $(FILES)``
+    - This rule specifies that each object file depends on the corresponding source file.
+    - The command ``gcc $(FLAGS) $(HEADERS) $(FILES)`` compiles the source files into object files using the specified flags.
+
+  - ``all: $(NAME)``
+    - This rule specifies that the all target depends on ``$(NAME)``. When make **all** is run, it will build the library.
+
+  - ``clean:``
+    - This rule removes all object files (``rm -f $(OBJ)``).
+
+  - ``fclean: clean``
+    - This rule removes the static library and the shared library as well, after performing the clean rule (``rm -f $(NAME)`` and ``rm -f $(SONAME)``).
+
+  - ``re: fclean all``
+    - This rule forces a rebuild of the project by first performing **fclean** and then **all**.
+
+  - ``so``:
+    - This rule creates a shared library (``gcc -shared -o $(SONAME) -fPIC $(FILES)``):
+    - ``-shared``: Create a shared library.
+    - ``-o $(SONAME)``: Specify the output file name.
+    - ``-fPIC``: Generate position-independent code.
+
+  #### ``.PHONY``
+  - ``.PHONY: all clean fclean re so bonus``
+    - This line marks the listed targets (all, clean, fclean, re, so, bonus) as phony targets. This means that these targets do not represent actual files but are just names for commands to be executed. This prevents issues where a file with the same name might interfere with the execution of these rules.
+
+  #### Summary
+  - The Makefile compiles C source files into object files.
+  - It creates a static library libft.a and can optionally create a shared library libft.so.
+  - It includes rules to clean up object files and libraries.
+  - It uses standard Makefile variables and rules to manage the build process efficiently.
 
 <br>
 <br>
