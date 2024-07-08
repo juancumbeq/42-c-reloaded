@@ -1648,28 +1648,174 @@
 
   ## EXERCISE 25: 
   ### Description
-  - 
+  - Create the function ``ft_foreach`` which, for a given ints array, applies a function on all elements of the array. This function will be applied following the array’s order.
+
+  - Here’s how the function should be prototyped: ``void ft_foreach(int *tab, int length, void (*f)(int));``
+
+  - For example, the function ft_foreach could be called as follows in order to display all ints of the array: ``ft_foreach(tab, 1337, &ft_putnbr);``
+
   
   ### Notes
-
   ```
-  ```
-  - 
+  #include <stdio.h>
+  #include <unistd.h>
 
+  void	print_number(int n)
+  {
+    printf("%d", n);
+  }
+
+  void	ft_foreach(int *tab, int length, void (*f)(int))
+  {
+    int	i;
+
+    i = 0;
+    while (i < length)
+    {
+      f(*tab);
+      i++;
+      tab++;
+    }
+  }
+
+  /*
+  int	main(void)
+  {
+    int	array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int	len;
+
+    len = sizeof(array) / sizeof(array[0]);
+    ft_foreach(array, len, print_number);
+  }*/
+  ```
+
+
+  #### Function to Apply a Function to Each Element of an Array
+  ```
+  void ft_foreach(int *tab, int length, void (*f)(int))
+  {
+      int i;
+
+      i = 0;
+      while (i < length)
+      {
+          f(*tab);
+          i++;
+          tab++;
+      }
+  }
+  ```
+
+  - **Parameters**:
+    - ``int *tab``: A pointer to the first element of an integer array.
+    - ``int length``: The number of elements in the array.
+    - ``void (*f)(int)``: A function pointer that points to a function taking an integer as a parameter and returning void.
+
+  - **Functionality**: This function iterates over the array tab and applies the function f to each element.
+    - ``int i``: A loop counter variable.
+    - Loop: ``while (i < length)``, it loops through each element in the array.
+      - ``f(*tab)``: Calls the function f with the current element of the array as an argument.
+      - ``i++``: Increments the loop counter.
+      - ``tab++``: Moves the pointer tab to the next element in the array.
+
+  #### Summary
+  - The ``main`` function initializes an array of integers and calculates its length.
+  - It then calls ``ft_foreach``, passing the array, its length, and the ``print_number`` function.
+  - ``ft_foreach`` iterates through the array, applying print_number to each element, effectively printing each number in the array to the console in sequence.
 
 <br>
 <br>
 
   ## EXERCISE 26: 
   ### Description
-  - 
-  
+  - Create a function ``ft_count_if`` which will return the number of  elements of the array that return 1, passed to the function f.
+
+  - Here’s how the function should be prototyped:`int ft_count_if(char **tab, int (*f)(char*));`.
+
+  - The array will be delimited by 0.
+
   ### Notes
-
   ```
-  ```
-  - 
+  int	count_if(char *str)
+  {
+    int	count;
+    int	num_one;
+    int	i;
 
+    count = 0;
+    while (*str)
+    {
+      if (*str == '1')
+      {
+        count++;
+      }
+      str++;
+    }
+    return (count);
+  }
+
+  int	ft_count_if(char **tab, int (*f)(char *))
+  {
+    i = 0;
+    num_one = 0;
+    while (tab[i] != 0)
+    {
+      if (f(tab[i]) == 1)
+      {
+        num_one++;
+      }
+      i++;
+    }
+    return (num_one);
+  }
+
+  int	main(int ac, char **av)
+  {
+    int count = ft_count_if(av + 1, count_if);
+    printf("%d\n", count);
+    return (0);
+  }
+  ```
+  #### Function count_if
+  - **Purpose**: This function counts the number of occurrences of the character ``'1'`` in the string ``str``.
+  - **Parameters**: Takes a single parameter char *str, which is a string.
+  - **Logic**:
+    - Initializes count to 0.
+    - Iterates through the string using a while (``*str``) loop, which continues until the null terminator ``'\0'`` is reached.
+    - Checks if the current character ``*str`` is ``'1'``. If true, increments count.
+    - Moves to the next character in the string using ``str++``.
+    - Returns the total count of ``'1'`` characters found in the string.
+
+  #### Function ft_count_if
+  - **Purpose**: This function counts how many strings in the array tab have exactly one occurrence of the character ``'1'``, by using the function pointer f.
+  - **Parameters**:
+    - ``char **tab``: An array of strings.
+    - ``int (*f)(char *)``: A function pointer that takes a string and returns an integer.
+  - **Logic**:
+    - Initializes ``i`` and ``num_one`` to 0.
+    - Iterates through the array of strings using a ``while (tab[i] != 0)`` loop, which continues until a ``NULL`` pointer is encountered.
+    - Calls the function ``f`` (in this case, count_if) on the current string ``tab[i]``.
+    - Checks if the result of ``f(tab[i])`` is ``1``. If true, increments ``num_one``.
+    - Moves to the next string in the array using ``i++``.
+    - Returns the total count of strings that have exactly one occurrence of ``'1'``.
+  
+  #### Function main
+  - **Purpose**: This is the entry point of the program. It calculates and prints the number of command-line arguments (excluding the program name) that contain exactly one occurrence of the character '1'.
+  - **Parameters**:
+    - ``int ac``: The argument count.
+    - ``char **av``: The argument vector, an array of strings representing the command-line arguments.
+  - **Logic**:
+    - Calls ft_count_if with av + 1 (which skips the program name in av[0]) and count_if.
+    - ft_count_if(av + 1, count_if) processes the command-line arguments and returns the count of arguments with exactly one '1'.
+    - Prints the count using printf.
+    - Returns 0, indicating successful execution.
+
+  #### Summary
+  - ``count_if`` Function: Counts the number of ``'1'`` characters in a string.
+  - ``ft_count_if`` Function: Uses ``count_if`` to determine how many strings in an array have exactly one ``'1'``.
+  - main Function: Uses ``ft_count_if`` to process command-line arguments and prints the result.
+    
+  This program effectively counts and prints the number of command-line arguments that contain exactly one occurrence of the character '1'.
 
 <br>
 <br>
